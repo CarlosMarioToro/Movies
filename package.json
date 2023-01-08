@@ -1,0 +1,19 @@
+{
+  "name": "movies",
+  "version": "1.0.0",
+  "description": "Aplicacion de peliculas y series de TV",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosMarioToro/Movies.git"
+  },
+  "author": "Carlos Mario Toro Zapata <ctoroz59@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CarlosMarioToro/Movies/issues"
+  },
+  "homepage": "https://github.com/CarlosMarioToro/Movies#readme"
+}
