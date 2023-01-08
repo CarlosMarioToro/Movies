@@ -95,6 +95,7 @@ function seriesPage() {
 
 function movieDetailsPage() {
     iconBack.classList.remove('inactive');
+    categoriesSection.classList.add('inactive');
     moviesSection.classList.add('inactive');
     movieDetailsSection.classList.remove('inactive');
     DetailsCollection.classList.remove('inactive');

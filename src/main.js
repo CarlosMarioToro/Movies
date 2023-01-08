@@ -101,10 +101,7 @@ function createMovies(movies, container) {
 async function getCredits(id) {
     const { data } = await api(`/movie/${id}/credits`);
     
-    console.log(data);
-    
     const persons = data.cast;
-    console.log(persons);
 
     DetailsCreditsPersons.innerHTML = '';
 
@@ -134,13 +131,10 @@ async function getCredits(id) {
 
 async function getTrailers(id) {
     const { data } = await api(`/movie/${id}/videos`);
-    
-    console.log(data);
 
     DetailsTrailersTrailer.innerHTML = '';
     
     const videos = data.results;
-    console.log(videos);
     videos.forEach(video => {
         if (video.site === 'YouTube') {
             const videoTrailerContainer = document.createElement('div');
@@ -205,8 +199,6 @@ async function getTopRatedMoviesPreview() {
 
 async function getMovieDetails(id) {
     const { data } = await api('/movie/' + id);
-
-    console.log(data);
 
     DetailsDescription.innerHTML = '';
     DetailsCharacteristics.innerHTML = '';
