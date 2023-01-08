@@ -796,9 +796,11 @@ img {
     height: 30px;
     display: flex;
     position: relative;
+    margin-bottom: 10px;
 }
 .movieDetails-title {
     position: absolute;
+    text-overflow: ellipsis;
     left: 12px;
 }
 
@@ -844,7 +846,9 @@ img {
 .movieDetails-genres {
     width: 100vw;
     display: flex;
+    gap: 10px;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
