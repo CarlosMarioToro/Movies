@@ -40,6 +40,7 @@ function homePage() {
     searchSection.classList.remove('inactive');
     favoritesSection.classList.add('inactive');
     categoriesSection.classList.add('inactive');
+    categoriesMoviesPreviewList.classList.add('inactive');
     moviesSection.classList.remove('inactive');
     movieDetailsSection.classList.add('inactive');
     seriesSection.classList.add('inactive');
@@ -56,7 +57,17 @@ function favoritesPage() {
 }
 
 function categoriesPage() {
-    
+    const [_, id] = location.hash.split('=');
+
+    getCategoriesMoviesPreview(id);
+    toggleButton.classList.remove('close');
+    navWrapper.classList.remove('show');
+    console.log('Categorias');
+    categoriesMoviesPreviewList.classList.remove('inactive');
+    iconBack.classList.remove('inactive');
+    categoriesSection.classList.remove('inactive');
+    moviesSection.classList.add('inactive');
+    movieDetailsSection.classList.add('inactive');
 }
 
 function searchPage() {
@@ -88,6 +99,7 @@ function movieDetailsPage() {
     movieDetailsSection.classList.remove('inactive');
     DetailsCollection.classList.remove('inactive');
     searchPreviewMovieList.classList.add('inactive');
+    categoriesMoviesPreviewList.classList.add('inactive');
 
     // DetailsCharacteristics.classList.add('inactive');
     // DetailsDuration.classList.add('inactive');

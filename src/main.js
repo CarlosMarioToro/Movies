@@ -48,8 +48,9 @@ const toggleButton = document.getElementById('button-menu')
 const navWrapper = document.getElementById('nav')
 
 toggleButton.addEventListener('click', () => {
-    toggleButton.classList.toggle('close')
-    navWrapper.classList.toggle('show')
+    getCategoriesMenu();
+    toggleButton.classList.toggle('close');
+    navWrapper.classList.toggle('show');
 })
 
 navWrapper.addEventListener('click', e => {
@@ -232,7 +233,7 @@ async function getMovieDetails(id) {
         detailDescriptionCollection_button.innerText = 'VER LA COLECCION';
         detailDescriptionCollection_button.classList.add('movieDetails-collectionsBtn');
         detailDescriptionCollection_image.classList.add('movieCollection-img');
-        detailDescriptionCollection_image.setAttribute('alt', data.original_title);
+        detailDescriptionCollection_image.setAttribute('alt', data.title);
         detailDescriptionCollection_image.setAttribute('src', IMAGE_URL + imageSize + data.belongs_to_collection.backdrop_path);        
         DetailsCollection.appendChild(detailDescriptionCollection_button);
         DetailsCollection.appendChild(detailDescriptionCollection_image);
@@ -240,7 +241,7 @@ async function getMovieDetails(id) {
         DetailsCollection.classList.add('inactive');
     }
 
-    const detailsTitleText = document.createTextNode(data.original_title);
+    const detailsTitleText = document.createTextNode(data.title);
     const average = data.vote_average;
     const detailsScoreText = document.createTextNode(Number(average.toFixed(2)));
     detailsReleaseDateSpan.innerText = data.release_date
@@ -289,4 +290,28 @@ async function getMoviesBySearch(query) {
     console.log(movies);
     console.log(query);
     createMovies(movies, searchPreviewMovieList);
+}
+
+async function getCategoriesMoviesPreview(id) {
+    const { data } = await api('/discover/movie?with_genres=' + id);
+
+    const movies = data.results;
+    createMovies(movies, categoriesPreviewMovieList);
+}
+
+async function getCategoriesMenu() {
+    const { data } = await api('/genre/movie/list');
+    
+    const categories = data.genres;
+    categoriesPreviewList.innerHTML = "";
+    const categoryContainer = document.createElement('ul');
+    categories.forEach(category => {
+        const categorylist = document.createElement('li');
+        const categoryElement = document.createElement('a');
+        categoryElement.href = '#categories=' + category.id;
+        categoryElement.innerText = category.name;
+        categorylist.appendChild(categoryElement);
+        categoryContainer.appendChild(categorylist);
+    });
+    menuCategorias.appendChild(categoryContainer);
 }

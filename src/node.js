@@ -8,8 +8,14 @@ const serieDetailsSection = document.querySelector('#serieDetails');
 const personDetailsSection = document.querySelector('#personDetails');
 
 const menu = document.querySelector('.menu');
+const menuCategorias = document.querySelector('.nav-links .mnuCategories');
 const searchForm = document.querySelector('#searchForm input');
 const iconBack = document.querySelector('.iconBack');
+const categoriesMoviesPreviewList = document.querySelector('.categoriesPreview-movieList');
+const categoriesPreviewList = document.querySelector('.categories .categories-list');
+const categoriesPreviewMovieList = document.querySelector('.categories .categoriesPreview-movieList');
+const categoriesList = document.querySelector('.categories-list');
+const categoryHeaderTitle = document.querySelector('.categories-title');
 const searchPreviewMovieList = document.querySelector('.search .searchPreview-movieList');
 const playingMoviesPreviewList = document.querySelector('.playingPreview-movieList');
 const playinggPreviewMovieList = document.querySelector('.playing .playingPreview-movieList');
