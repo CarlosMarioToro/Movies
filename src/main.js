@@ -23,13 +23,23 @@ let imageSize = 'w342';
 function resizeHandler() {
 
     // get window width
-    if (window.matchMedia("(max-width: 375px)").matches) {
+    if (window.matchMedia("(max-width: 375px)").matches) {        
+        searchFormContainer.classList.remove('inactive');
+        searchFormMnuContainer.classList.add('inactive');
+        searchSection.classList.remove('inactive');
         imageSize = 'w342';
-    } else if (window.matchMedia("(min-width: 376px) and (max-width: 992px)").matches) {
+    } else if (window.matchMedia("(min-width: 376px) and (max-width: 992px)").matches) {       
+        searchFormContainer.classList.remove('inactive');
+        searchFormMnuContainer.classList.add('inactive');
+        searchSection.classList.remove('inactive');
         imageSize = 'w500';     
     } else if (window.matchMedia("(min-width: 993px)").matches) {
+        searchFormContainer.classList.add('inactive');
+        searchFormMnuContainer.classList.remove('inactive');
+        searchSection.classList.add('inactive');
         imageSize = 'original';   
     }
+    getCategoriesMenu();
     getPlayingMoviesPreview();
     getPopularMoviesPreview();
     getTrendingMoviesPreview();
@@ -48,7 +58,6 @@ const toggleButton = document.getElementById('button-menu')
 const navWrapper = document.getElementById('nav')
 
 toggleButton.addEventListener('click', () => {
-    getCategoriesMenu();
     toggleButton.classList.toggle('close');
     navWrapper.classList.toggle('show');
 })
@@ -276,7 +285,6 @@ async function getRelatedMoviesPreview(id) {
 
 async function getMoviesBySearch(query) {
     const { data } = await api('/search/movie?query=' + query);
-    // alert('Hagale');
 
     const movies = data.results;
     console.log(movies);
@@ -284,10 +292,25 @@ async function getMoviesBySearch(query) {
     createMovies(movies, searchPreviewMovieList);
 }
 
+async function getCategorieName(idGenre) {
+    const { data } = await api('/genre/movie/list');
+
+    const genres = data.genres;
+    genres.forEach(genre => {
+        if (genre.id == idGenre) {
+            if (categoryHeaderTitle.hasChildNodes()) {
+                categoryHeaderTitle.removeChild(categoryHeaderTitle.lastChild);
+            }
+            categoryHeaderTitle.appendChild(document.createTextNode('Categorias' + ' - ' + genre.name));
+        }
+    })
+}
+
 async function getCategoriesMoviesPreview(id) {
     const { data } = await api('/discover/movie?with_genres=' + id);
 
     const movies = data.results;
+    getCategorieName(id);
     createMovies(movies, categoriesPreviewMovieList);
 }
 
@@ -295,7 +318,6 @@ async function getCategoriesMenu() {
     const { data } = await api('/genre/movie/list');
     
     const categories = data.genres;
-    categoriesPreviewList.innerHTML = "";
     const categoryContainer = document.createElement('ul');
     categories.forEach(category => {
         const categorylist = document.createElement('li');

@@ -19,28 +19,23 @@
             <span></span>
             <span></span>
         </button>
-        <!-- <nav id="nav" class="main-nav">
-            <div class="nav-links">
-                <a class="link-item" href="#categories=">Categorias</a>
-                <a class="link-item" href="#favorites">Favoritos</a>
-                <a class="link-item" href="#movies">Movies</a>
-                <a class="link-item" href="#series">Series</a>
-                <a class="link-item" href="#aboutme">Sobre mí</a>
-            </div>
-        </nav> -->
-        <div class="main-nav" id="nav">
-            <ul class="nav-links">
-                <li><a class="mnuCategories" href="#">Categorias</a></li>
-                <li><a href="#">Favoritos</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Series</a></li>
-                <li><a href="#">Sobre Mí</a></li>
-            </ul>
-        </div>
         <header class="">
             <h1 class="header-title">MOVIES DB</h1>
         </header>
+        <div class="main-nav" id="nav">
+            <ul class="nav-links">
+                <li><a class="mnuPrincipal mnuCategories" href="#">Categorias</a></li>
+                <li><a class="mnuPrincipal mnuFavorites" href="#">Favoritos</a></li>
+                <li><a class="mnuPrincipal mnuMovies" href="#">Movies</a></li>
+                <li><a class="mnuPrincipal mnuSeries" href="#">Series</a></li>
+                <li><a class="mnuPrincipal mnuAboutMe" href="#">Sobre Mí</a></li>
+            </ul>
+        </div>
+        <div class="containerMnu">
+            <form id="searchFormMnu" class="header-searchForm">
+                <input class="mainMnu" placeholder="Buscar"/><span class="searchicon"></span>
+            </form>
+        </div>
     </section>
     <section class="iconBack inactive">
         <span class="backicon"></span>
@@ -54,14 +49,13 @@
         
         <article class="searchPreview-movieList scrolling"></article>
     </section>
-    <section class="favorites" id="favorites"></section>
-    <section class="categories categoriesPreview" id="categories">
+    <section class="favorites inactive" id="favorites"></section>
+    <section class="categories categoriesPreview inactive" id="categories">
         <h2 class="categories-title">Categorias</h2>
-        
-        <article class="categories-list scrolling"></article>
+
         <article class="categoriesPreview-movieList"></article>
     </section>
-    <section class="movies" id="movies">
+    <section class="movies inactive" id="movies">
         <section class="playing playingPreview">
             <div class="playingPreview-header">
                 <h2 class="playingPreview-title">Cartelera</h2>
@@ -103,13 +97,13 @@
             <article class="topRatedPreview-movieList scrolling"></article>
         </section>
     </section>
-    <section class="series" id="series">
+    <section class="series inactive" id="series">
         <section class="airing airingPreview"></section>
         <section class="onAir onAirPreview"></section>
         <section class="popular popularPreview"></section>
         <section class="topRated topRatedPreview"></section>
     </section>
-    <section class="movieDetails" id="movieDetails">
+    <section class="movieDetails inactive" id="movieDetails">
         <img class="movieDetails-image" src="" alt="">
         <div class="movieDetails-characteristics"></div>
         <div class="movieDetails-duration"></div>
@@ -130,7 +124,7 @@
             <article class="relatedPreview-movieList scrolling"></article>
         </section>
     </section>
-    <section class="serieDetails" id="serieDetails">
+    <section class="serieDetails inactive" id="serieDetails">
         <img src="" alt="">
         <div>
             <h1 class="serieDetail-title"></h1>
@@ -143,16 +137,13 @@
         <section class="seriesRelated seriesRelatedPreview"></section>
         <section class="seriesSeason relatedSeasonPreview"></section>
     </section>
-    <section class="personDetails" id="personDetails">
+    <section class="personDetails inactive" id="personDetails">
         <img src="" alt="">
         <div>
             <h1 class="personDetail-title"></h1>
         </div>
         <div class="movieDetails-description"></div>
         <section class="moviesRelated moviesRelatedPreview"></section>
-    </section>
-    <section class="free">
-        <span></span>
     </section>
     <section class="footer" id="aboutMe">
         <footer>Hecho con Amor por Carlos Toro</footer>

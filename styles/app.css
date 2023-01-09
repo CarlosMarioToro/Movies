@@ -55,7 +55,6 @@ body {
     padding: 0;
     background: var(--background-bunker);
     height: 100vh;
-    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +62,7 @@ body {
 }
 
 section {
-    padding: 10px 0;
+    padding: 1vw 0;
 }
 
 button {
@@ -119,13 +118,12 @@ img {
 }
 
 .menu {
-    width: 100vw;
+    width: calc(100% - 50px);
     height: 50px;
     display: flex;
-    /* justify-content: space-evenly; */
     align-items: center;
     gap: 25px;
-    margin-left: 25px;
+    padding: 25px;
     background-color: transparent;
 }
 
@@ -156,7 +154,7 @@ img {
 
 #nav ul li a {
     width: 50vw;
-    height: 25px;
+    height: 33px;
     display: block;
     text-decoration: none;
     text-align: center;
@@ -269,9 +267,7 @@ img {
 .search {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 50px;
-    padding: 10px;
+    width: 100vw;
 }
 
 .search .container {
@@ -305,9 +301,8 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 175px;
     padding-left: 4px;
-    padding-bottom: 12px;
+    padding-bottom: 50px;
 }
 
 .searchPreview-movieList .movie-container {
@@ -360,9 +355,22 @@ img {
     width: 100vw;
 }
 
+.categories {
+    width: 90vw;    
+    padding-bottom: 50px;
+}
+
+.categories-title {
+    margin-left: 25px;
+}
+
 .categoriesPreview-movieList {
-    height: 52px;
-    padding-left: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 25px;
+    margin-top: 25px;
+    padding-bottom: 50px;
 }
 
 .categoriesPreview-movieList .movie-container {
@@ -382,11 +390,11 @@ img {
 
 .movies {
     width: 90vw;
+    padding-bottom: 50px;
 }
 
 .playing {
     width: 100%;
-    height: 250px;
     padding: 10px;
 }
 
@@ -416,7 +424,6 @@ img {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 175px;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
@@ -464,7 +471,6 @@ img {
 
 .popular {
     width: 100%;
-    height: 250px;
     padding: 10px;
 }
 
@@ -494,7 +500,6 @@ img {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 175px;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
@@ -542,7 +547,6 @@ img {
 
 .trending {
     width: 100%;
-    height: 250px;
     padding: 10px;
 }
 
@@ -572,7 +576,6 @@ img {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 175px;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
@@ -620,7 +623,6 @@ img {
 
 .upcoming {
     width: 100%;
-    height: 250px;
     padding: 10px;
 }
 
@@ -650,7 +652,6 @@ img {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 175px;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
@@ -698,7 +699,6 @@ img {
 
 .topRated {
     width: 100%;
-    height: 250px;
     padding: 10px;
 }
 
@@ -728,7 +728,6 @@ img {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 175px;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
@@ -784,6 +783,7 @@ img {
     flex-direction: column;
     gap: 12px;
     margin: 0 10px;
+    padding-bottom: 50px;
 }
 
 .movieDetails-image {
@@ -1021,19 +1021,9 @@ img {
     width: 100vw;
 }
 
-.free {
-    width: 100vw;
-    display: flex;
-}
-
-.free span {
-    width: 100vw;
-    height: 10px;
-}
-
 .footer {
     width: 100%;
-    height: 30px;
+    height: 40px;
     background-color: var(--background-footer-pickled_bluewood);
     color: var(--text-color);
     text-align: center;
@@ -1042,7 +1032,7 @@ img {
     align-items: center;
     position: fixed;
     border: 0 10px;
-    bottom: -10px;
+    bottom: 0px;
     right: 0;
     z-index: 101;
 }
@@ -1061,29 +1051,114 @@ img {
         display: none;
     }
 
-    .main-logo {
-        flex-basis: 30%;
+    .menu {
+        width: calc(100% - 50px);
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding: 10px 25px;
+        background-color: transparent;
     }
 
     .main-nav {
         position: static;
-        margin-left: 0;
-        flex-basis: 70%;
-        height: 100%;
     }
 
-    .nav-links {
+    #nav {
+        margin: auto;
+        width: 20%;
+        height: 27px;
+    }
+    
+    #nav ul {
         width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-evenly;
         align-items: center;
-        justify-content: flex-end;
-        background: white;
+        line-height: 0;
     }
 
-    .link-item {
-        display: inline-block;
-        margin-top: 0;
-        margin-right: 2rem;
+    #nav li li {
+        left: 0px;
+    }
+
+    #nav ul li a {
+        width: 90px;
+        height: 10px;
+        border: none
+    }
+
+    #nav li a {
+        background-color:var(--background-bunker);
+        color:var(--text-color);
+        text-decoration:none;
+        padding:10px 12px;
+        display:block;
+        border: 2px solid var(--background-bunker);
+    }
+
+    #nav li a:hover {
+        border-bottom: 2px solid red;
+    }
+
+    #nav ul ul {
+        display: block;
+        position: absolute;
+        visibility: hidden;
+        width: 100px;
+        top: 59px;
+        padding: 0;
+    }
+
+    #nav ul li:hover ul {
+        display:block;
+        visibility: visible;
+    }
+
+    .containerMnu {
+        position: relative;
+    }
+    
+    .mainMnu {
+        position: relative;
+        border: 2px solid #5F8FA4;
+        height: 25px;
+        background: #B1BEC6;
+        width: 190px;
+        border-radius: 50px;
+        padding-left: 31px;
+        padding-right: 11px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 13px;
+        color: #555;
+    }
+    
+    .mainMnu:focus {
+        outline: none;
+    }
+    
+    .searchicon {
+        position: absolute;
+        height: 12px;
+        width: 12px;
+        background: transparent;
+        border: 3px solid #5F8FA4;
+        left: 10px;
+        top: 8px;
+        border-radius: 100%;
+    }
+    
+    .searchicon::after {
+        content: '';
+        position: absolute;
+        background: #5F8FA4;
+        height: 6px;
+        width: 3px;
+        bottom: -5px;
+        right: -3px;
+        transform: rotate(-45deg);
     }
 }

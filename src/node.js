@@ -6,10 +6,14 @@ const movieDetailsSection = document.querySelector('#movieDetails');
 const seriesSection = document.querySelector('#series');
 const serieDetailsSection = document.querySelector('#serieDetails');
 const personDetailsSection = document.querySelector('#personDetails');
+const footerSection = document.querySelector('#aboutMe');
 
 const menu = document.querySelector('.menu');
 const menuCategorias = document.querySelector('.nav-links .mnuCategories');
+const searchFormContainer = document.querySelector('#searchForm');
+const searchFormMnuContainer = document.querySelector('#searchFormMnu');
 const searchForm = document.querySelector('#searchForm input');
+const searchFormMnu = document.querySelector('#searchFormMnu input');
 const iconBack = document.querySelector('.iconBack');
 const categoriesMoviesPreviewList = document.querySelector('.categoriesPreview-movieList');
 const categoriesPreviewList = document.querySelector('.categories .categories-list');
@@ -34,6 +38,12 @@ const topRatedPreviewMovieList = document.querySelector('.topRated .topRatedPrev
 const relatedPreviewMovieList = document.querySelector('.moviesRelated .moviesRelatedPreview-movieList');
 const relatedMoviesPreviewList = document.querySelector('.relatedPreview-movieList');
 const topRatedMoreBtn = document.querySelector('.topRatedMore-btn');
+
+const playingSection = document.querySelector('.movies .playing');
+const popularSection = document.querySelector('.movies .popular');
+const trendingSection = document.querySelector('.movies .trending');
+const upcomingSection = document.querySelector('.movies .upcoming');
+const topRatedSection = document.querySelector('.movies .topRated');
 
 const DetailsImage = document.querySelector('.movieDetails .movieDetails-image');
 const DetailsCharacteristics = document.querySelector('.movieDetails-characteristics');
