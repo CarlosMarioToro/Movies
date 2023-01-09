@@ -2,6 +2,7 @@
     --background-bunker:  #0F1618;
     --background-footer-pickled_bluewood: #33435E;
     --background-detalles: #4d4d4d;
+    --purple-light: #EEEAF2;
     --header-title: #FF0000;
     --color-botones: #0E7C10;
     --color-botones-hover: #507350;
@@ -117,6 +118,38 @@ img {
     border-radius: 4px;
 }
 
+.movie-container--loading {
+    background: var(--purple-light);
+    border-radius: 5px;
+    height: 175px;
+    min-height: 175px;
+    max-height: 175px;
+    width: 117px;
+    min-width: 117px;
+    max-width: 117px;
+    /* margin-bottom: 15px; */
+    animation: loading-skeleton infinite 5s;
+}
+
+.movie-container--loading:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.movie-container--loading:nth-child(3) {
+    animation-delay: .4s;
+}
+
+@keyframes loading-skeleton {
+
+    0%,
+    100% {
+        opacity: 100%;
+    }
+
+    50% {
+        opacity: 0%;
+    }
+}
 .menu {
     width: calc(100% - 50px);
     height: 50px;
