@@ -69,8 +69,10 @@ navWrapper.addEventListener('click', e => {
     }
 })
 
-function createMovies(movies, container) {
-    container.innerHTML = '';
+function createMovies(movies, container, clean = true) {
+    if (clean) {
+        container.innerHTML = '';        
+    }
 
     if (createMovies.caller.name === 'getTrendingMoviesPreview') {
         where = 'Trending';
@@ -175,6 +177,13 @@ async function getTrailers(id) {
 
 async function getPlayingMoviesPreview() {
     const { data } = await api('/movie/now_playing');
+
+    const movies = data.results;
+    createMovies(movies, playingMoviesPreviewList);
+}
+
+async function getPlayingMoviesPage(page) {
+    const { data } = await api('/movie/now_playing?page=' + page);
 
     const movies = data.results;
     createMovies(movies, playingMoviesPreviewList);

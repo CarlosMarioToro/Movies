@@ -1,3 +1,9 @@
+let pagePlaying = 1;
+let pagePopular = 1;
+let pageTrending = 1;
+let pageUpcoming = 1;
+let pageToprated = 1;
+
 iconBack.addEventListener('click', () => {
     window.history.back();
 });
@@ -6,14 +12,144 @@ searchForm.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
         location.hash = '#query=' + searchForm.value;
     }
-})
+});
 
 searchFormMnu.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
         searchFormContainer.classList.add('inactive');
         location.hash = '#query=' + searchFormMnu.value;
     }
-})
+});
+
+playingMoreBtn.addEventListener('click', () => {
+    location.hash = '#playing&page=' + pagePlaying ;
+    navegationButtonsPrevious.disabled = true;
+    navegationButtonsPrevious.style.opacity = 0.7;
+});
+
+popularMoreBtn.addEventListener('click', () => {
+    location.hash = '#popular&page=' + pagePopular;
+});
+
+trendingMoreBtn.addEventListener('click', () => {
+    location.hash = '#trending&page=' + pageTrending;
+});
+
+upcomingMoreBtn.addEventListener('click', () => {
+    location.hash = '#upcoming&page=' + pageUpcoming;
+});
+
+topRatedMoreBtn.addEventListener('click', () => {
+    location.hash = '#toprated&page=' + pageToprated;
+});
+
+navegationButtonsPrevious.addEventListener('click', () => {
+    if (location.hash.startsWith('#playing')) {
+        pagePlaying--;
+        location.hash = '#playing&page=' + pagePlaying;
+        if (pagePlaying == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }        
+    } else if (location.hash.startsWith('#popular')) {
+        pagePopular--;
+        location.hash = '#popular&page=' + pagePopular;
+        if (pagePopular == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#trending')) {
+        pageTrending--;
+        location.hash = '#trending&page=' + pageTrending;
+        if (pageTrending == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#upcoming')) {
+        pageUpcoming--;
+        location.hash = '#upcoming&page=' + pageUpcoming;
+        if (pageUpcoming == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#toprated')) {
+        pageToprated--;
+        location.hash = '#toprated&page=' + pageToprated;
+        if (pageToprated == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    }
+});
+
+navegationButtonsNext.addEventListener('click', () => {
+    if (location.hash.startsWith('#playing')) {
+        pagePlaying++;
+        location.hash = '#playing&page=' + pagePlaying;
+        if (pagePlaying == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }        
+    } else if (location.hash.startsWith('#popular')) {
+        pagePopular++;
+        location.hash = '#popular&page=' + pagePopular;
+        if (pagePopular == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#trending')) {
+        pageTrending++;
+        location.hash = '#trending&page=' + pageTrending;
+        if (pageTrending == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#upcoming')) {
+        pageUpcoming++;
+        location.hash = '#upcoming&page=' + pageUpcoming;
+        if (pageUpcoming == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    } else if (location.hash.startsWith('#toprated')) {
+        pageToprated++;
+        location.hash = '#toprated&page=' + pageToprated;
+        if (pageToprated == 1) {
+            navegationButtonsPrevious.disabled = true;
+            navegationButtonsPrevious.style.opacity = 0.7;
+        } else {
+            navegationButtonsPrevious.disabled = false;
+            navegationButtonsPrevious.style.opacity = 1;
+        }
+    }
+});
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
@@ -25,6 +161,16 @@ function navigator() {
         favoritesPage();
     } else if (location.hash.startsWith('#categories=')) {
         categoriesPage();
+    } else if (location.hash.startsWith('#playing')) {
+        playingPage();
+    } else if (location.hash.startsWith('#popular')) {
+        popularPage();
+    } else if (location.hash.startsWith('#trending')) {
+        trendingPage();
+    } else if (location.hash.startsWith('#upcoming')) {
+        upcomingPage();
+    } else if (location.hash.startsWith('#toprated')) {
+        topRatedPage();
     } else if (location.hash.startsWith('#query=')) {
         searchPage();
     } else if (location.hash.startsWith('#movies')) {
@@ -57,6 +203,48 @@ function homePage() {
 
     iconBack.classList.add('inactive');
     movieDetailsSection.classList.add('inactive');
+
+    playingMoviesPreviewList.classList.remove('playingPage-movieList');
+    playingMoviesPreviewList.classList.add('playingPreview-movieList');
+    popularSection.classList.remove('inactive');
+    trendingSection.classList.remove('inactive');
+    upcomingSection.classList.remove('inactive');
+    topRatedSection.classList.remove('inactive');
+    playingMoreBtn.classList.remove('inactive');
+
+    popularMoviesPreviewList.classList.remove('popularPage-movieList');
+    popularMoviesPreviewList.classList.add('popularPreview-movieList');
+    popularMoreBtn.classList.remove('inactive');
+    playingSection.classList.remove('inactive');
+    trendingSection.classList.remove('inactive');
+    upcomingSection.classList.remove('inactive');
+    topRatedSection.classList.remove('inactive');
+
+    trendingMoviesPreviewList.classList.remove('trendingPage-movieList');
+    trendingMoviesPreviewList.classList.add('trendingPreview-movieList');
+    trendingMoreBtn.classList.remove('inactive');
+    playingSection.classList.remove('inactive');
+    popularSection.classList.remove('inactive');
+    upcomingSection.classList.remove('inactive');
+    topRatedSection.classList.remove('inactive');
+
+    upcomingMoviesPreviewList.classList.remove('upcomingPage-movieList');
+    upcomingMoviesPreviewList.classList.add('upcomingPreview-movieList');
+    upcomingMoreBtn.classList.remove('inactive');
+    playingSection.classList.remove('inactive');
+    popularSection.classList.remove('inactive');
+    trendingSection.classList.remove('inactive');
+    topRatedSection.classList.remove('inactive');
+
+    topRatedMoviesPreviewList.classList.remove('topRatedPage-movieList');
+    topRatedMoviesPreviewList.classList.add('topRatedPreview-movieList');
+    topRatedMoreBtn.classList.remove('inactive');
+    playingSection.classList.remove('inactive');
+    popularSection.classList.remove('inactive');
+    trendingSection.classList.remove('inactive');
+    upcomingSection.classList.remove('inactive');
+    
+    navegationButtons.classList.add('inactive');
 
     // searchSection.classList.add('inactive');
     // moviesSection.classList.add('inactive');
@@ -134,4 +322,73 @@ function serieDetailsPage() {
 
 function personDetailsPage() {
 
+}
+
+function playingPage() {
+    getPlayingMoviesPage(pagePlaying);
+    iconBack.classList.remove('inactive');
+    playingMoviesPreviewList.classList.add('playingPage-movieList');
+    playingMoviesPreviewList.classList.remove('playingPreview-movieList');
+    playingMoreBtn.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');
+    
+    navegationButtons.classList.remove('inactive');
+}
+
+function popularPage() {
+    console.log('playing page');
+    iconBack.classList.remove('inactive');
+    popularMoviesPreviewList.classList.add('popularPage-movieList');
+    popularMoviesPreviewList.classList.remove('popularPreview-movieList');
+    popularMoreBtn.classList.add('inactive');
+    playingSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');
+    
+    navegationButtons.classList.remove('inactive');
+}
+
+function trendingPage() {
+    console.log('playing page');
+    iconBack.classList.remove('inactive');
+    trendingMoviesPreviewList.classList.add('trendingPage-movieList');
+    trendingMoviesPreviewList.classList.remove('trendingPreview-movieList');
+    trendingMoreBtn.classList.add('inactive');
+    playingSection.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');
+    
+    navegationButtons.classList.remove('inactive');
+}
+
+function upcomingPage() {
+    console.log('playing page');
+    iconBack.classList.remove('inactive');
+    upcomingMoviesPreviewList.classList.add('upcomingPage-movieList');
+    upcomingMoviesPreviewList.classList.remove('upcomingPreview-movieList');
+    upcomingMoreBtn.classList.add('inactive');
+    playingSection.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');
+    
+    navegationButtons.classList.remove('inactive');
+}
+
+function topRatedPage() {
+    iconBack.classList.remove('inactive');
+    topRatedMoviesPreviewList.classList.add('topRatedPage-movieList');
+    topRatedMoviesPreviewList.classList.remove('topRatedPreview-movieList');
+    topRatedMoreBtn.classList.add('inactive');
+    playingSection.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    
+    navegationButtons.classList.remove('inactive');
 }
