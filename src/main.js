@@ -85,25 +85,27 @@ function createMovies(movies, container) {
     }
 
     movies.forEach(movie => {
-        if (movie.poster_path !== null) {
-            const movieContainer = document.createElement('div');
-            movieContainer.classList.add('movie-container');
-    
-            const movieImg = document.createElement('img');
-            movieImg.classList.add('movie-img');
-            movieImg.setAttribute('alt', movie.title);
-            movieImg.setAttribute('title', movie.title);
-            movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-            movieImg.setAttribute('where', where);
-    
-            movieImg.addEventListener('click', () => {
-                location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
-                getMovieDetails(movie.id);
-            });
-    
-            movieContainer.appendChild(movieImg);
-            container.appendChild(movieContainer);            
-        }
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const movieImg = document.createElement('img');
+        movieImg.classList.add('movie-img');
+        movieImg.setAttribute('alt', movie.title);
+        movieImg.setAttribute('title', movie.title);
+        movieImg.setAttribute('loading', 'lazy');
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
+        movieImg.addEventListener('error', () => {
+            movieImg.setAttribute('src', '../assets/error.png');
+        });
+        movieImg.setAttribute('where', where);
+
+        movieImg.addEventListener('click', () => {
+            location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
+            getMovieDetails(movie.id);
+        });
+
+        movieContainer.appendChild(movieImg);
+        container.appendChild(movieContainer); 
     });
 }
 
@@ -254,7 +256,10 @@ async function getMovieDetails(id) {
     if (data.backdrop_path !== null) {
         DetailsImage.setAttribute('src', IMAGE_URL + imageSize + data.backdrop_path);        
     } else {
-        DetailsImage.setAttribute('src', IMAGE_URL + imageSize + data.poster_path);        
+        DetailsImage.setAttribute('src', IMAGE_URL + imageSize + data.poster_path);
+        DetailsImage.addEventListener('error', () => {
+            DetailsImage.setAttribute('src', '../assets/error.png');
+        });        
     }
     detailsTitle.appendChild(detailsTitleText);
     detailsScore.appendChild(detailsScoreText);

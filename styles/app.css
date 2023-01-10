@@ -52,6 +52,7 @@ html {
 }
 
 body {
+    font-size: 1.2rem;
     margin: 0;
     padding: 0;
     background: var(--background-bunker);
@@ -98,7 +99,7 @@ h3 {
 }
 
 img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 2 / 3;
 }
 
 .scrolling::-webkit-scrollbar {
@@ -127,7 +128,6 @@ img {
     width: 117px;
     min-width: 117px;
     max-width: 117px;
-    /* margin-bottom: 15px; */
     animation: loading-skeleton infinite 5s;
 }
 
@@ -150,6 +150,18 @@ img {
         opacity: 0%;
     }
 }
+
+.movie-img {
+    height: 175px;
+    min-height: 175px;
+    max-height: 175px;
+    width: 117px;
+    min-width: 117px;
+    max-width: 117px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .menu {
     width: calc(100% - 50px);
     height: 50px;
@@ -289,8 +301,8 @@ img {
     padding-right: 11px;
     padding-top: 4px;
     padding-bottom: 4px;
-    font-size: 13px;
-    color: #555;
+    font-size: 1.3rem;
+    color: #303030;
 }
 
 .main:focus {
@@ -341,17 +353,6 @@ img {
 .searchPreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.searchPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .iconBack {
@@ -411,16 +412,6 @@ img {
     margin-right: 8px;
 }
 
-.categoriesPreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-}
-
 .movies {
     width: 90vw;
     padding-bottom: 50px;
@@ -459,23 +450,11 @@ img {
     white-space: nowrap;
     padding-left: 4px;
     padding-bottom: 12px;
-    justify-content: center;
 }
 
 .playingPreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.playingPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .playingPagePreview-movieList {
@@ -489,17 +468,6 @@ img {
 .playingPagePreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.playingPagePreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .popular {
@@ -543,17 +511,6 @@ img {
     margin-right: 8px;
 }
 
-.popularPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .popularPagePreview-movieList {
     width: 100%;
     display: flex;
@@ -565,17 +522,6 @@ img {
 .popularPagePreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.popularPagePreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .trending {
@@ -619,17 +565,6 @@ img {
     margin-right: 8px;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .trendingPagePreview-movieList {
     width: 100%;
     display: flex;
@@ -641,17 +576,6 @@ img {
 .trendingPagePreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.trendingPagePreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .upcoming {
@@ -695,17 +619,6 @@ img {
     margin-right: 8px;
 }
 
-.upcomingPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .upcomingPagePreview-movieList {
     width: 100%;
     display: flex;
@@ -717,17 +630,6 @@ img {
 .upcomingPagePreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.upcomingPagePreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .topRated {
@@ -771,17 +673,6 @@ img {
     margin-right: 8px;
 }
 
-.topRatedPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .topRatedPagePreview-movieList {
     width: 100%;
     display: flex;
@@ -793,17 +684,6 @@ img {
 .topRatedPagePreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
-}
-
-.topRatedPagePreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 .series {
@@ -841,8 +721,8 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     color: var(--text-color);
     background: var(--button1);
     border-radius: 100%;
@@ -886,7 +766,7 @@ img {
 }
 
 .genre {
-    width: 81px;
+    width: 96px;
     height: 27px;
     display: flex;
     justify-content: center;
@@ -971,7 +851,7 @@ img {
 .movieDetails-credits-persons .personImg-container .personName {
     display: flex;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: var(--font-weight-text1);
 }
 
@@ -1035,17 +915,6 @@ img {
     margin-right: 8px;
 }
 
-.relatedPreview-movieList .movie-container .movie-img {
-    height: 175px;
-    min-height: 175px;
-    max-height: 175px;
-    width: 117px;
-    min-width: 117px;
-    max-width: 117px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .serieDetails {
     width: 100vw;
 }
@@ -1059,6 +928,7 @@ img {
     height: 40px;
     background-color: var(--background-footer-pickled_bluewood);
     color: var(--text-color);
+    font-size: 1.2rem;
     text-align: center;
     display: flex;
     justify-content: space-evenly;
@@ -1165,7 +1035,7 @@ img {
         padding-right: 11px;
         padding-top: 4px;
         padding-bottom: 4px;
-        font-size: 13px;
+        font-size: 1.3rem;
         color: #555;
     }
     
