@@ -1,8 +1,27 @@
-let pagePlaying = 1;
-let pagePopular = 1;
-let pageTrending = 1;
-let pageUpcoming = 1;
-let pageToprated = 1;
+let page = 1;
+// let pagePlaying = 1;
+// let pagePopular = 1;
+// let pageTrending = 1;
+// let pageUpcoming = 1;
+// let pageToprated = 1;
+// let infiniteScroll;
+
+
+
+const toggleButton = document.getElementById('button-menu')
+const navWrapper = document.getElementById('nav')
+
+toggleButton.addEventListener('click', () => {
+    toggleButton.classList.toggle('close');
+    navWrapper.classList.toggle('show');
+})
+
+navWrapper.addEventListener('click', e => {
+    if (e.target.id === 'nav') {
+        navWrapper.classList.remove('show')
+        toggleButton.classList.remove('close')
+    }
+})
 
 iconBack.addEventListener('click', () => {
     window.history.back();
@@ -22,9 +41,7 @@ searchFormMnu.addEventListener('keydown', (e) => {
 });
 
 playingMoreBtn.addEventListener('click', () => {
-    location.hash = '#playing&page=' + pagePlaying ;
-    navegationButtonsPrevious.disabled = true;
-    navegationButtonsPrevious.style.opacity = 0.7;
+    location.hash = '#playing';
 });
 
 popularMoreBtn.addEventListener('click', () => {
@@ -43,120 +60,19 @@ topRatedMoreBtn.addEventListener('click', () => {
     location.hash = '#toprated&page=' + pageToprated;
 });
 
-navegationButtonsPrevious.addEventListener('click', () => {
-    if (location.hash.startsWith('#playing')) {
-        pagePlaying--;
-        location.hash = '#playing&page=' + pagePlaying;
-        if (pagePlaying == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }        
-    } else if (location.hash.startsWith('#popular')) {
-        pagePopular--;
-        location.hash = '#popular&page=' + pagePopular;
-        if (pagePopular == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#trending')) {
-        pageTrending--;
-        location.hash = '#trending&page=' + pageTrending;
-        if (pageTrending == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#upcoming')) {
-        pageUpcoming--;
-        location.hash = '#upcoming&page=' + pageUpcoming;
-        if (pageUpcoming == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#toprated')) {
-        pageToprated--;
-        location.hash = '#toprated&page=' + pageToprated;
-        if (pageToprated == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    }
-});
-
-navegationButtonsNext.addEventListener('click', () => {
-    if (location.hash.startsWith('#playing')) {
-        pagePlaying++;
-        location.hash = '#playing&page=' + pagePlaying;
-        if (pagePlaying == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }        
-    } else if (location.hash.startsWith('#popular')) {
-        pagePopular++;
-        location.hash = '#popular&page=' + pagePopular;
-        if (pagePopular == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#trending')) {
-        pageTrending++;
-        location.hash = '#trending&page=' + pageTrending;
-        if (pageTrending == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#upcoming')) {
-        pageUpcoming++;
-        location.hash = '#upcoming&page=' + pageUpcoming;
-        if (pageUpcoming == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    } else if (location.hash.startsWith('#toprated')) {
-        pageToprated++;
-        location.hash = '#toprated&page=' + pageToprated;
-        if (pageToprated == 1) {
-            navegationButtonsPrevious.disabled = true;
-            navegationButtonsPrevious.style.opacity = 0.7;
-        } else {
-            navegationButtonsPrevious.disabled = false;
-            navegationButtonsPrevious.style.opacity = 1;
-        }
-    }
-});
-
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
-window.addEventListener('resize', resizeHandler);
+// window.addEventListener('resize', resizeHandler);
+// document.addEventListener('scroll', infiniteScroll, false);
 resizeHandler();
 
 function navigator() {
+    // console.log(infiniteScroll);
+    // if (infiniteScroll) {
+    //     window.removeEventListener('scroll', infiniteScroll, { passive: false });
+    //     infiniteScroll = undefined;
+    // }
+
     if (location.hash.startsWith('#favorites')) {
         favoritesPage();
     } else if (location.hash.startsWith('#categories=')) {
@@ -186,7 +102,14 @@ function navigator() {
     } else {
         homePage();
     }
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
+
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    // if (infiniteScroll) {
+    //     window.addEventListener('scroll', infiniteScroll, { passive: false });
+    // }
 }
 
 function homePage() {
@@ -244,7 +167,7 @@ function homePage() {
     trendingSection.classList.remove('inactive');
     upcomingSection.classList.remove('inactive');
     
-    navegationButtons.classList.add('inactive');
+    // navegationButtons.classList.add('inactive');
 
     // searchSection.classList.add('inactive');
     // moviesSection.classList.add('inactive');
@@ -293,6 +216,25 @@ function moviesPage() {
 
 }
 
+function playingPage() {
+    console.log('Playing Page');
+    iconBack.classList.remove('inactive');
+    moviesSection.classList.remove('inactive');
+    movieDetailsSection.classList.add('inactive');
+    playingMoviesPreviewList.classList.add('playingPage-movieList');
+    playingMoviesPreviewList.classList.remove('playingPreview-movieList');
+    playingMoreBtn.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');    
+
+    playingMoviesPreviewList.innerHTML = '';
+    getPlayingMoviesPage();
+    // infiniteScroll = getPlayingMoviesPage;
+    // navegationButtons.classList.remove('inactive');
+}
+
 function seriesPage() {
 
 }
@@ -324,20 +266,6 @@ function personDetailsPage() {
 
 }
 
-function playingPage() {
-    getPlayingMoviesPage(pagePlaying);
-    iconBack.classList.remove('inactive');
-    playingMoviesPreviewList.classList.add('playingPage-movieList');
-    playingMoviesPreviewList.classList.remove('playingPreview-movieList');
-    playingMoreBtn.classList.add('inactive');
-    popularSection.classList.add('inactive');
-    trendingSection.classList.add('inactive');
-    upcomingSection.classList.add('inactive');
-    topRatedSection.classList.add('inactive');
-    
-    navegationButtons.classList.remove('inactive');
-}
-
 function popularPage() {
     console.log('playing page');
     iconBack.classList.remove('inactive');
@@ -349,7 +277,7 @@ function popularPage() {
     upcomingSection.classList.add('inactive');
     topRatedSection.classList.add('inactive');
     
-    navegationButtons.classList.remove('inactive');
+    // navegationButtons.classList.remove('inactive');
 }
 
 function trendingPage() {
@@ -363,7 +291,7 @@ function trendingPage() {
     upcomingSection.classList.add('inactive');
     topRatedSection.classList.add('inactive');
     
-    navegationButtons.classList.remove('inactive');
+    // navegationButtons.classList.remove('inactive');
 }
 
 function upcomingPage() {
@@ -377,7 +305,7 @@ function upcomingPage() {
     trendingSection.classList.add('inactive');
     topRatedSection.classList.add('inactive');
     
-    navegationButtons.classList.remove('inactive');
+    // navegationButtons.classList.remove('inactive');
 }
 
 function topRatedPage() {
@@ -390,5 +318,5 @@ function topRatedPage() {
     trendingSection.classList.add('inactive');
     upcomingSection.classList.add('inactive');
     
-    navegationButtons.classList.remove('inactive');
+    // navegationButtons.classList.remove('inactive');
 }

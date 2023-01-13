@@ -162,7 +162,7 @@ img {
     border-radius: 5px;
 }
 
-.navegationBtns {
+/* .navegationBtns {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -175,7 +175,7 @@ img {
     border-radius: 5px;
     height: 27px;
     width: 67px;
-}
+} */
 
 .menu {
     width: calc(100% - 50px);
@@ -476,13 +476,14 @@ img {
     width: 100%;
     display: flex;
     justify-content: center;
+    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .playingPage-movieList .movie-container {
     display: inline-block;
-    margin-right: 8px;
+    /* margin-right: 8px; */
 }
 
 

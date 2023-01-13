@@ -5,12 +5,25 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
-        'language': 'es-MX',
+        'language': 'es-CO',
     },
 });
 
 const API_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/';
+
+let observador = new IntersectionObserver((entradas) => {
+    console.log(entradas);
+    entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+            page++;
+            getPlayingMoviesPage();
+        }
+    })
+}, {
+    rootMargin: '0px 0px 0px 0px',
+    threshold: 1.0
+});
 
 const screen = {
         small: null,
@@ -19,6 +32,7 @@ const screen = {
     };
 
 let imageSize = 'w342';
+let ultimaPelicula;
 
 function resizeHandler() {
 
@@ -54,37 +68,22 @@ function minutesToString(minutes) {
     return hour + 'h ' + minute + 'min';
 }
 
-const toggleButton = document.getElementById('button-menu')
-const navWrapper = document.getElementById('nav')
-
-toggleButton.addEventListener('click', () => {
-    toggleButton.classList.toggle('close');
-    navWrapper.classList.toggle('show');
-})
-
-navWrapper.addEventListener('click', e => {
-    if (e.target.id === 'nav') {
-        navWrapper.classList.remove('show')
-        toggleButton.classList.remove('close')
-    }
-})
-
 function createMovies(movies, container, clean = true) {
     if (clean) {
         container.innerHTML = '';        
     }
 
-    if (createMovies.caller.name === 'getTrendingMoviesPreview') {
-        where = 'Trending';
-    } else if (createMovies.caller.name === 'getRelatedMoviesPreview') {
-        where = 'Related';
-    } else if (createMovies.caller.name === 'getPopularMoviesPreview') {
-        where = 'Popular';
-    } else if (createMovies.caller.name === 'getUpcomingMoviesPreview') {
-        where = 'Upcoming';
-    } else {
-        where = 'Category';
-    }
+    // if (createMovies.caller.name === 'getTrendingMoviesPreview') {
+    //     where = 'Trending';
+    // } else if (createMovies.caller.name === 'getRelatedMoviesPreview') {
+    //     where = 'Related';
+    // } else if (createMovies.caller.name === 'getPopularMoviesPreview') {
+    //     where = 'Popular';
+    // } else if (createMovies.caller.name === 'getUpcomingMoviesPreview') {
+    //     where = 'Upcoming';
+    // } else {
+    //     where = 'Category';
+    // }
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -99,7 +98,7 @@ function createMovies(movies, container, clean = true) {
         movieImg.addEventListener('error', () => {
             movieImg.setAttribute('src', '../assets/error.png');
         });
-        movieImg.setAttribute('where', where);
+        // movieImg.setAttribute('where', where);
 
         movieImg.addEventListener('click', () => {
             location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
@@ -108,7 +107,28 @@ function createMovies(movies, container, clean = true) {
 
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer); 
+
+        
     });
+
+    if (page < 1000) {
+        if (!clean) {
+            const peliculasEnPantalla = document.querySelectorAll('.playingPage-movieList .movie-container');
+            console.log(peliculasEnPantalla);        
+    
+            if (ultimaPelicula) {
+                observador.unobserve(ultimaPelicula);
+            }
+    
+            ultimaPelicula = peliculasEnPantalla[peliculasEnPantalla.length - 1];
+        
+            observador.observe(ultimaPelicula);
+        
+            // console.log(peliculasEnPantalla2);
+            console.log(ultimaPelicula);        
+        }        
+    }
+    
 }
 
 async function getCredits(id) {
@@ -182,11 +202,22 @@ async function getPlayingMoviesPreview() {
     createMovies(movies, playingMoviesPreviewList);
 }
 
-async function getPlayingMoviesPage(page) {
-    const { data } = await api('/movie/now_playing?page=' + page);
+async function getPlayingMoviesPage() {
+    // const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-    const movies = data.results;
-    createMovies(movies, playingMoviesPreviewList);
+    // const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight);
+
+    // console.log(scrollIsBottom);
+    
+    // if (scrollIsBottom) {        
+        // page++;
+        // playingMoviesPreviewList.innerHTML = '';
+        console.log(page);
+        const { data } = await api('/movie/now_playing?page=' + page);
+        
+        const movies = data.results;
+        createMovies(movies, playingMoviesPreviewList, false);
+    // }
 }
 
 async function getPopularMoviesPreview() {
