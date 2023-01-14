@@ -100,7 +100,6 @@ function createMovies(movies, container, clean = true) {
         movieImg.addEventListener('error', () => {
             movieImg.setAttribute('src', '../assets/error.png');
         });
-        // movieImg.setAttribute('where', where);
 
         movieImg.addEventListener('click', () => {
             location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
@@ -191,7 +190,6 @@ async function getPlayingMoviesPage() {
         
         const movies = data.results;
         createMovies(movies, genericMoviesPreviewList, false);
-    // }
 }
 
 async function getPopularMoviesPreview() {

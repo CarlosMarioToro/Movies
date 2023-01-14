@@ -1,12 +1,4 @@
 let page = 1;
-// let pagePlaying = 1;
-// let pagePopular = 1;
-// let pageTrending = 1;
-// let pageUpcoming = 1;
-// let pageToprated = 1;
-// let infiniteScroll;
-
-
 
 const toggleButton = document.getElementById('button-menu')
 const navWrapper = document.getElementById('nav')
@@ -99,7 +91,6 @@ function navigator() {
     } else {
         homePage();
     }
-    // window.scrollTo(0, 0);
 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -161,17 +152,6 @@ function homePage() {
     upcomingSection.classList.remove('inactive');
 
     genericSection.classList.add('inactive');
-    
-    // navegationButtons.classList.add('inactive');
-
-    // searchSection.classList.add('inactive');
-    // moviesSection.classList.add('inactive');
-    // playingSection.classList.add('inactive');
-    // popularSection.classList.add('inactive');
-    // trendingSection.classList.add('inactive');
-    // upcomingSection.classList.add('inactive');
-    // topRatedSection.classList.add('inactive');
-    // footerSection.classList.add('inactive');
 }
 
 function favoritesPage() {
@@ -309,15 +289,6 @@ function movieDetailsPage() {
     DetailsCollection.classList.remove('inactive');
     searchPreviewMovieList.classList.add('inactive');
     categoriesMoviesPreviewList.classList.add('inactive');
-
-    // DetailsCharacteristics.classList.add('inactive');
-    // DetailsDuration.classList.add('inactive');
-    // DetailsGenres.classList.add('inactive');
-    // DetailsDescription.classList.add('inactive');
-    // DetailsCollection.classList.add('inactive');
-    // DetailsCredits.classList.add('inactive');
-    // DetailsTrailers.classList.add('inactive');
-    // DetailsRelated.classList.add('inactive');
 }
 
 function serieDetailsPage() {

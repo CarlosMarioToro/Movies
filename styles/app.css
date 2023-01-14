@@ -162,21 +162,6 @@ img {
     border-radius: 5px;
 }
 
-/* .navegationBtns {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 60px;
-}
-
-.navegationBtns button {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-} */
-
 .menu {
     width: calc(100% - 50px);
     height: 50px;
@@ -483,7 +468,6 @@ img {
 
 .playingPage-movieList .movie-container {
     display: inline-block;
-    /* margin-right: 8px; */
 }
 
 .popular {
@@ -731,7 +715,6 @@ img {
 
 .genericPage-movieList .movie-container {
     display: inline-block;
-    /* margin-right: 8px; */
 }
 
 

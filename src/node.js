@@ -48,12 +48,8 @@ const upcomingSection = document.querySelector('.movies .upcoming');
 const topRatedSection = document.querySelector('.movies .topRated');
 const genericSection = document.querySelector('.movies .generic');
 
-const peliculasEnPantalla2 = document.querySelectorAll('.playingPreview-movieList .movie-container')
-const peliculasPlaying = document.querySelectorAll('.playingPage-movieList .movie-container')
-
-// const navegationButtons = document.querySelector('.movies .navegationBtns');
-// const navegationButtonsPrevious = document.querySelector('.movies .navegationBack');
-// const navegationButtonsNext = document.querySelector('.movies .navegationNext');
+const peliculasEnPantalla2 = document.querySelectorAll('.playingPreview-movieList .movie-container');
+const peliculasPlaying = document.querySelectorAll('.playingPage-movieList .movie-container');
 
 const DetailsImage = document.querySelector('.movieDetails .movieDetails-image');
 const DetailsCharacteristics = document.querySelector('.movieDetails-characteristics');
