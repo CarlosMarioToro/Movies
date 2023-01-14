@@ -486,8 +486,6 @@ img {
     /* margin-right: 8px; */
 }
 
-
-
 .popular {
     width: 100%;
     padding: 10px;
@@ -703,6 +701,40 @@ img {
     display: inline-block;
     margin-right: 8px;
 }
+
+.generic {
+    width: 100%;
+    padding: 10px;
+}
+
+.genericPreview-movieList {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 4px;
+    padding-bottom: 12px;
+}
+
+.genericPreview-movieList .movie-container {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.genericPage-movieList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.genericPage-movieList .movie-container {
+    display: inline-block;
+    /* margin-right: 8px; */
+}
+
+
 
 .series {
     width: 100vw;

@@ -13,7 +13,6 @@ const API_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/';
 
 let observador = new IntersectionObserver((entradas) => {
-    console.log(entradas);
     entradas.forEach(entrada => {
         if (entrada.isIntersecting) {
             page++;
@@ -35,7 +34,6 @@ let imageSize = 'w342';
 let ultimaPelicula;
 
 function resizeHandler() {
-
     // get window width
     if (window.matchMedia("(max-width: 375px)").matches) {        
         searchFormContainer.classList.remove('inactive');
@@ -68,22 +66,26 @@ function minutesToString(minutes) {
     return hour + 'h ' + minute + 'min';
 }
 
+function observer(clean, qSelector) {
+    if (page < 1000) {
+        if (!clean) {
+            const peliculasPlaying = document.querySelectorAll(qSelector);
+    
+            if (ultimaPelicula) {
+                observador.unobserve(ultimaPelicula);
+            }
+    
+            ultimaPelicula = peliculasPlaying[peliculasPlaying.length - 1];
+        
+            observador.observe(ultimaPelicula); 
+        }        
+    }
+}
+
 function createMovies(movies, container, clean = true) {
     if (clean) {
         container.innerHTML = '';        
     }
-
-    // if (createMovies.caller.name === 'getTrendingMoviesPreview') {
-    //     where = 'Trending';
-    // } else if (createMovies.caller.name === 'getRelatedMoviesPreview') {
-    //     where = 'Related';
-    // } else if (createMovies.caller.name === 'getPopularMoviesPreview') {
-    //     where = 'Popular';
-    // } else if (createMovies.caller.name === 'getUpcomingMoviesPreview') {
-    //     where = 'Upcoming';
-    // } else {
-    //     where = 'Category';
-    // }
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -108,26 +110,8 @@ function createMovies(movies, container, clean = true) {
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer); 
 
-        
     });
-
-    if (page < 1000) {
-        if (!clean) {
-            const peliculasEnPantalla = document.querySelectorAll('.playingPage-movieList .movie-container');
-            console.log(peliculasEnPantalla);        
-    
-            if (ultimaPelicula) {
-                observador.unobserve(ultimaPelicula);
-            }
-    
-            ultimaPelicula = peliculasEnPantalla[peliculasEnPantalla.length - 1];
-        
-            observador.observe(ultimaPelicula);
-        
-            // console.log(peliculasEnPantalla2);
-            console.log(ultimaPelicula);        
-        }        
-    }
+    observer(clean, '.genericPage-movieList .movie-container'); 
     
 }
 
@@ -203,20 +187,10 @@ async function getPlayingMoviesPreview() {
 }
 
 async function getPlayingMoviesPage() {
-    // const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-    // const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight);
-
-    // console.log(scrollIsBottom);
-    
-    // if (scrollIsBottom) {        
-        // page++;
-        // playingMoviesPreviewList.innerHTML = '';
-        console.log(page);
         const { data } = await api('/movie/now_playing?page=' + page);
         
         const movies = data.results;
-        createMovies(movies, playingMoviesPreviewList, false);
+        createMovies(movies, genericMoviesPreviewList, false);
     // }
 }
 
@@ -227,11 +201,25 @@ async function getPopularMoviesPreview() {
     createMovies(movies, popularMoviesPreviewList);
 }
 
+async function getPopularMoviesPage() {
+    const { data } = await api('/movie/popular?page=' + page);
+
+    const movies = data.results;
+    createMovies(movies, genericMoviesPreviewList, false);
+}
+
 async function getTrendingMoviesPreview() {
     const { data } = await api('/trending/movie/day');
 
     const movies = data.results;
     createMovies(movies, trendingMoviesPreviewList);
+}
+
+async function getTrendingMoviesPage() {
+    const { data } = await api('/trending/movie/day?page=' + page);
+
+    const movies = data.results;
+    createMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getUpcomingMoviesPreview() {
@@ -241,11 +229,25 @@ async function getUpcomingMoviesPreview() {
     createMovies(movies, upcomingMoviesPreviewList);
 }
 
+async function getUpcomingMoviesPage() {
+    const { data } = await api('/movie/upcoming?page=' + page);
+
+    const movies = data.results;
+    createMovies(movies, genericMoviesPreviewList, false);
+}
+
 async function getTopRatedMoviesPreview() {
     const { data } = await api('/movie/top_rated');
 
     const movies = data.results;
     createMovies(movies, topRatedMoviesPreviewList);
+}
+
+async function getTopRatedMoviesPage() {
+    const { data } = await api('/movie/top_rated?page=' + page);
+
+    const movies = data.results;
+    createMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getMovieDetails(id) {

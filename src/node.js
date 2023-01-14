@@ -22,7 +22,7 @@ const categoriesList = document.querySelector('.categories-list');
 const categoryHeaderTitle = document.querySelector('.categories-title');
 const searchPreviewMovieList = document.querySelector('.search .searchPreview-movieList');
 const playingMoviesPreviewList = document.querySelector('.playingPreview-movieList');
-const playinggPreviewMovieList = document.querySelector('.playing .playingPreview-movieList');
+const playingPreviewMovieList = document.querySelector('.playing .playingPreview-movieList');
 const playingMoreBtn = document.querySelector('.playingMore-btn');
 const popularMoviesPreviewList = document.querySelector('.popularPreview-movieList');
 const populargPreviewMovieList = document.querySelector('.popular .popularPreview-movieList');
@@ -35,18 +35,21 @@ const upcomingPreviewMovieList = document.querySelector('.upcoming .upcomingPrev
 const upcomingMoreBtn = document.querySelector('.upcomingMore-btn');
 const topRatedMoviesPreviewList = document.querySelector('.topRatedPreview-movieList');
 const topRatedPreviewMovieList = document.querySelector('.topRated .topRatedPreview-movieList');
+const topRatedMoreBtn = document.querySelector('.topRatedMore-btn');
+const genericMoviesPreviewList = document.querySelector('.genericPreview-movieList');
+const genericPreviewMovieList = document.querySelector('.generic .genericPreview-movieList');
 const relatedPreviewMovieList = document.querySelector('.moviesRelated .moviesRelatedPreview-movieList');
 const relatedMoviesPreviewList = document.querySelector('.relatedPreview-movieList');
-const topRatedMoreBtn = document.querySelector('.topRatedMore-btn');
 
 const playingSection = document.querySelector('.movies .playing');
 const popularSection = document.querySelector('.movies .popular');
 const trendingSection = document.querySelector('.movies .trending');
 const upcomingSection = document.querySelector('.movies .upcoming');
 const topRatedSection = document.querySelector('.movies .topRated');
+const genericSection = document.querySelector('.movies .generic');
 
 const peliculasEnPantalla2 = document.querySelectorAll('.playingPreview-movieList .movie-container')
-const peliculasEnPantalla = document.querySelectorAll('.playingPage-movieList .movie-container')
+const peliculasPlaying = document.querySelectorAll('.playingPage-movieList .movie-container')
 
 // const navegationButtons = document.querySelector('.movies .navegationBtns');
 // const navegationButtonsPrevious = document.querySelector('.movies .navegationBack');
