@@ -15,8 +15,21 @@ const IMAGE_URL = 'https://image.tmdb.org/t/p/';
 let observador = new IntersectionObserver((entradas) => {
     entradas.forEach(entrada => {
         if (entrada.isIntersecting) {
+            console.log(caller);
             page++;
-            getPlayingMoviesPage();
+            if (caller === 'playing') {
+                getPlayingMoviesPage();                
+            } else if (caller === 'popular') {
+                getPopularMoviesPage()
+            } else if (caller === 'trending') {
+                getTrendingMoviesPage();
+            } else if (caller === 'upcoming') {
+                getUpcomingMoviesPage();
+            } else if (caller === 'toprated') {
+                getTopRatedMoviesPage();
+            } else if (caller === 'search') {
+                getMoviesBySearchPage(queries);
+            }
         }
     })
 }, {
@@ -24,14 +37,11 @@ let observador = new IntersectionObserver((entradas) => {
     threshold: 1.0
 });
 
-const screen = {
-        small: null,
-        medium: window.matchMedia('(min-width: 400px)'),
-        large: window.matchMedia('(min-width: 800px)')
-    };
-
 let imageSize = 'w342';
 let ultimaPelicula;
+let caller;
+let queries;
+let maxPage;
 
 function resizeHandler() {
     // get window width
@@ -66,10 +76,13 @@ function minutesToString(minutes) {
     return hour + 'h ' + minute + 'min';
 }
 
-function observer(clean, qSelector) {
-    if (page < 1000) {
+function observer(clean, qSelector, caller) {
+    console.log(maxPage);
+    if (page < maxPage) {
         if (!clean) {
             const peliculasPlaying = document.querySelectorAll(qSelector);
+
+            console.log(peliculasPlaying);
     
             if (ultimaPelicula) {
                 observador.unobserve(ultimaPelicula);
@@ -77,6 +90,7 @@ function observer(clean, qSelector) {
     
             ultimaPelicula = peliculasPlaying[peliculasPlaying.length - 1];
         
+            console.log(ultimaPelicula);
             observador.observe(ultimaPelicula); 
         }        
     }
@@ -86,6 +100,8 @@ function createMovies(movies, container, clean = true) {
     if (clean) {
         container.innerHTML = '';        
     }
+
+    console.log(movies);
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -189,6 +205,8 @@ async function getPlayingMoviesPage() {
         const { data } = await api('/movie/now_playing?page=' + page);
         
         const movies = data.results;
+        caller = 'playing';
+        maxPage = data.total_pages;
         createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -203,6 +221,8 @@ async function getPopularMoviesPage() {
     const { data } = await api('/movie/popular?page=' + page);
 
     const movies = data.results;
+    caller = 'popular';
+    maxPage = data.total_pages;
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -217,6 +237,8 @@ async function getTrendingMoviesPage() {
     const { data } = await api('/trending/movie/day?page=' + page);
 
     const movies = data.results;
+    caller = 'trending';
+    maxPage = data.total_pages;
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -231,6 +253,9 @@ async function getUpcomingMoviesPage() {
     const { data } = await api('/movie/upcoming?page=' + page);
 
     const movies = data.results;
+    caller = 'upcoming';
+    maxPage = data.total_pages;
+    console.log(page);
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -245,6 +270,8 @@ async function getTopRatedMoviesPage() {
     const { data } = await api('/movie/top_rated?page=' + page);
 
     const movies = data.results;
+    caller = 'toprated';
+    maxPage = data.total_pages;
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -328,13 +355,30 @@ async function getRelatedMoviesPreview(id) {
     createMovies(movies, relatedMoviesPreviewList);
 }
 
-async function getMoviesBySearch(query) {
-    const { data } = await api('/search/movie?query=' + query);
+// async function getMoviesBySearch(query) {
+//     const { data } = await api('/search/movie?query=' + query);
+
+//     const movies = data.results;
+//     createMovies(movies, genericMoviesPreviewList, false);
+// }
+
+async function getMoviesBySearchPage(query) {
+    // const { data } = await api('/search/movie?query=' + query + 'page=' + page);
+    const { data } = await api('/search/movie', {
+        params: {
+            query,
+            page,
+        },
+    });
+
+    console.log(data);
 
     const movies = data.results;
-    console.log(movies);
-    console.log(query);
-    createMovies(movies, searchPreviewMovieList);
+    caller = 'search';
+    queries = query;
+    maxPage = data.total_pages;
+    console.log(page);
+    createMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getCategorieName(idGenre) {

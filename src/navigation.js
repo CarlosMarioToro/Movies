@@ -77,6 +77,7 @@ function navigator() {
         page = 1;
         topRatedPage();
     } else if (location.hash.startsWith('#query=')) {
+        page = 1;
         searchPage();
     } else if (location.hash.startsWith('#movies')) {
         moviesPage();
@@ -174,16 +175,22 @@ function categoriesPage() {
 function searchPage() {
     const [_, query] = location.hash.split('=');
 
-    getMoviesBySearch(query);
+    // getMoviesBySearch(query);
     iconBack.classList.remove('inactive');
-    favoritesSection.classList.add('inactive');
-    categoriesSection.classList.add('inactive')
-    moviesSection.classList.add('inactive');
-    seriesSection.classList.add('inactive');
+    moviesSection.classList.remove('inactive');
     movieDetailsSection.classList.add('inactive');
-    serieDetailsSection.classList.add('inactive');
-    personDetailsSection.classList.add('inactive');
-    searchPreviewMovieList.classList.remove('inactive');
+    genericMoviesPreviewList.classList.add('genericPage-movieList');
+    genericMoviesPreviewList.classList.remove('genericPreview-movieList');
+    playingMoreBtn.classList.add('inactive');
+    playingSection.classList.add('inactive');
+    popularSection.classList.add('inactive');
+    trendingSection.classList.add('inactive');
+    upcomingSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');
+    genericSection.classList.remove('inactive');  
+
+    genericMoviesPreviewList.innerHTML = '';
+    getMoviesBySearchPage(query);
 
 }
 
