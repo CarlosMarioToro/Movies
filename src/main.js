@@ -29,6 +29,8 @@ let observador = new IntersectionObserver((entradas) => {
                 getTopRatedMoviesPage();
             } else if (caller === 'search') {
                 getMoviesBySearchPage(queries);
+            } else if (caller === 'category') {
+                getCategoriesMoviesPreview(catId);
             }
         }
     })
@@ -42,6 +44,7 @@ let ultimaPelicula;
 let caller;
 let queries;
 let maxPage;
+let catId;
 
 function resizeHandler() {
     // get window width
@@ -76,7 +79,7 @@ function minutesToString(minutes) {
     return hour + 'h ' + minute + 'min';
 }
 
-function observer(clean, qSelector, caller) {
+function observer(clean, qSelector) {
     console.log(maxPage);
     if (page < maxPage) {
         if (!clean) {
@@ -355,15 +358,7 @@ async function getRelatedMoviesPreview(id) {
     createMovies(movies, relatedMoviesPreviewList);
 }
 
-// async function getMoviesBySearch(query) {
-//     const { data } = await api('/search/movie?query=' + query);
-
-//     const movies = data.results;
-//     createMovies(movies, genericMoviesPreviewList, false);
-// }
-
 async function getMoviesBySearchPage(query) {
-    // const { data } = await api('/search/movie?query=' + query + 'page=' + page);
     const { data } = await api('/search/movie', {
         params: {
             query,
@@ -396,11 +391,21 @@ async function getCategorieName(idGenre) {
 }
 
 async function getCategoriesMoviesPreview(id) {
-    const { data } = await api('/discover/movie?with_genres=' + id);
+    const { data } = await api('/discover/movie', {
+        params: {
+            with_genres : id,
+            page,
+        },
+    });
+
+    console.log(data);
 
     const movies = data.results;
+    caller = 'category';
+    catId = id;
+    maxPage = data.total_pages;
     getCategorieName(id);
-    createMovies(movies, categoriesPreviewMovieList);
+    createMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getCategoriesMenu() {
@@ -411,7 +416,7 @@ async function getCategoriesMenu() {
     categories.forEach(category => {
         const categorylist = document.createElement('li');
         const categoryElement = document.createElement('a');
-        categoryElement.href = '#categories=' + category.id;
+        categoryElement.href = '#category=' + category.id;
         categoryElement.innerText = category.name;
         categorylist.appendChild(categoryElement);
         categoryContainer.appendChild(categorylist);
