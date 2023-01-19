@@ -120,12 +120,20 @@ function createMovies(movies, container, clean = true) {
             movieImg.setAttribute('src', '../assets/error.png');
         });
 
+        const movieBtn = document.createElement('button');
+        movieBtn.classList.add('movie-btn');
+        movieBtn.addEventListener('click', () => {
+            movieBtn.classList.toggle('movie-btn--liked');
+            //AGREGAMOS PELICULAS A LOCAL STORAGE
+        });
+
         movieImg.addEventListener('click', () => {
             location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
             getMovieDetails(movie.id);
         });
 
         movieContainer.appendChild(movieImg);
+        movieContainer.appendChild(movieBtn);
         container.appendChild(movieContainer); 
 
     });

@@ -8,6 +8,9 @@ const serieDetailsSection = document.querySelector('#serieDetails');
 const personDetailsSection = document.querySelector('#personDetails');
 const footerSection = document.querySelector('#aboutMe');
 
+const toggleButton = document.getElementById('button-menu')
+const navWrapper = document.getElementById('nav')
+
 const menu = document.querySelector('.menu');
 const menuCategorias = document.querySelector('.nav-links .mnuCategories');
 const searchFormContainer = document.querySelector('#searchForm');
@@ -15,6 +18,13 @@ const searchFormMnuContainer = document.querySelector('#searchFormMnu');
 const searchForm = document.querySelector('#searchForm input');
 const searchFormMnu = document.querySelector('#searchFormMnu input');
 const iconBack = document.querySelector('.iconBack');
+
+const favoritesMoviesPreviewList = document.querySelector('.favoritesPreview-movieList');
+const favoritesPreviewList = document.querySelector('.favorites .favorites-list');
+const favoritesPreviewMovieList = document.querySelector('.favorites .favoritesPreview-movieList');
+const favoritesList = document.querySelector('.favorites-list');
+const favoritesHeaderTitle = document.querySelector('.favorites-title');
+
 const categoriesMoviesPreviewList = document.querySelector('.categoriesPreview-movieList');
 const categoriesPreviewList = document.querySelector('.categories .categories-list');
 const categoriesPreviewMovieList = document.querySelector('.categories .categoriesPreview-movieList');

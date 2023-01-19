@@ -162,6 +162,27 @@ img {
     border-radius: 5px;
 }
 
+.movie-container {
+    position: relative;
+}
+
+.movie-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    background-image: url(../assets/me-gusta.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: center;
+}
+
+.movie-btn--liked {
+    background-image: url(../assets/favorito.png);
+}
+
 .menu {
     width: calc(100% - 50px);
     height: 50px;
@@ -350,11 +371,6 @@ img {
     padding-bottom: 60px;
 }
 
-.searchPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
 .iconBack {
     position: relative;
     display: flex;
@@ -385,13 +401,111 @@ img {
     transform: rotate(-90deg);
 }
 
-.favorites {
-    width: 100vw;
-}
-
-.categories {
+.favorites,
+.categories,
+.movies {
     width: 90vw;    
     padding-bottom: 60px;
+}
+
+.favoritesPreview-header,
+.playingPreview-header,
+.popularPreview-header,
+.trendingPreview-header,
+.upcomingPreview-header,
+.topRatedPreview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px;
+}
+
+.favoritesPreview-title,
+.playingPreview-title,
+.popularPreview-title,
+.trendingPreview-title,
+.upcomingPreview-title,
+.topRatedPreview-title,
+.relatedMovies-title {
+    margin-bottom: 16px;
+}
+
+.favoritesMore-btn,
+.playingMore-btn,
+.popularMore-btn,
+.trendingMore-btn,
+.upcomingMore-btn,
+.topRatedMore-btn {
+    border-radius: 5px;
+    height: 27px;
+    width: 67px;
+}
+
+.favoritesMore-btn:hover,
+.favoritesMore-btn:focus,
+.playingMore-btn:hover,
+.playingMore-btn:focus,
+.popularMore-btn:hover,
+.popularMore-btn:focus,
+.trendingMore-btn:hover,
+.trendingMore-btn:focus,
+.upcomingMore-btn:hover,
+.upcomingMore-btn:focus,
+.topRatedMore-btn:hover,
+.topRatedMore-btn:focus {
+    background-color: var(--color-botones-hover);
+}
+
+.favoritesPreview-movieList,
+.playingPreview-movieList,
+.popularPreview-movieList,
+.trendingPreview-movieList,
+.upcomingPreview-movieList,
+.topRatedPreview-movieList,
+.genericPreview-movieList {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 4px;
+    padding-bottom: 12px;
+    justify-content: center;
+}
+
+.favoritesPreview-movieList .movie-container,
+.favoritesPage-movieList .movie-container,
+.categoriesPreview-movieList .movie-container,
+.playingPreview-movieList .movie-container,
+.playingPage-movieList .movie-container,
+.popularPreview-movieList .movie-container,
+.popularPage-movieList .movie-container,
+.trendingPreview-movieList .movie-container,
+.trendingPage-movieList .movie-container,
+.upcomingPreview-movieList .movie-container,
+.upcomingPage-movieList .movie-container,
+.topRatedPreview-movieList .movie-container,
+.topRatedPage-movieList .movie-container,
+.genericPreview-movieList .movie-container,
+.genericPage-movieList .movie-container,
+.movieDetails-credits-persons .personImg-container,
+.relatedPreview-movieList .movie-container,
+.searchPreview-movieList .movie-container{
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.favoritesPage-movieList,
+.playingPage-movieList,
+.popularPage-movieList,
+.trendingPage-movieList,
+.upcomingPage-movieList,
+.topRatedPage-movieList,
+.genericPage-movieList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .categories-title {
@@ -407,67 +521,9 @@ img {
     padding-bottom: 60px;
 }
 
-.categoriesPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.movies {
-    width: 90vw;
-    padding-bottom: 60px;
-}
-
 .playing {
     width: 100%;
     padding: 10px;
-}
-
-.playingPreview-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 4px;
-}
-
-.playingPreview-title {
-    margin-bottom: 16px;
-}
-
-.playingMore-btn {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-}
-
-.playingMore-btn:hover,
-.playingMore-btn:focus {
-    background-color: var(--color-botones-hover);
-}
-
-.playingPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-}
-
-.playingPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.playingPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.playingPage-movieList .movie-container {
-    display: inline-block;
 }
 
 .popular {
@@ -475,107 +531,9 @@ img {
     padding: 10px;
 }
 
-.popularPreview-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 4px;
-}
-
-.popularPreview-title {
-    margin-bottom: 16px;
-}
-
-.popularMore-btn {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-}
-
-.popularMore-btn:hover,
-.popularMore-btn:focus {
-    background-color: var(--color-botones-hover);
-}
-
-.popularPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-    justify-content: center;
-}
-
-.popularPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.popularPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.popularPage-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
 .trending {
     width: 100%;
     padding: 10px;
-}
-
-.trendingPreview-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 4px;
-}
-
-.trendingPreview-title {
-    margin-bottom: 16px;
-}
-
-.trendingMore-btn {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-}
-
-.trendingMore-btn:hover,
-.trendingMore-btn:focus {
-    background-color: var(--color-botones-hover);
-}
-
-.trendingPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-    justify-content: center;
-}
-
-.trendingPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.trendingPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.trendingPage-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
 }
 
 .upcoming {
@@ -583,144 +541,14 @@ img {
     padding: 10px;
 }
 
-.upcomingPreview-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 4px;
-}
-
-.upcomingPreview-title {
-    margin-bottom: 16px;
-}
-
-.upcomingMore-btn {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-}
-
-.upcomingMore-btn:hover,
-.upcomingMore-btn:focus {
-    background-color: var(--color-botones-hover);
-}
-
-.upcomingPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-    justify-content: center;
-}
-
-.upcomingPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.upcomingPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.upcomingPage-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
 .topRated {
     width: 100%;
     padding: 10px;
 }
 
-.topRatedPreview-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 4px;
-}
-
-.topRatedPreview-title {
-    margin-bottom: 16px;
-}
-
-.topRatedMore-btn {
-    border-radius: 5px;
-    height: 27px;
-    width: 67px;
-}
-
-.topRatedMore-btn:hover,
-.topRatedMore-btn:focus {
-    background-color: var(--color-botones-hover);
-}
-
-.topRatedPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-    justify-content: center;
-}
-
-.topRatedPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.topRatedPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.topRatedPage-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
 .generic {
     width: 100%;
     padding: 10px;
-}
-
-.genericPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 4px;
-    padding-bottom: 12px;
-}
-
-.genericPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
-}
-
-.genericPage-movieList {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.genericPage-movieList .movie-container {
-    display: inline-block;
-}
-
-
-
-.series {
-    width: 100vw;
 }
 
 .movieDetails {
@@ -863,11 +691,6 @@ img {
     justify-content: center;
 }
 
-.movieDetails-credits-persons .personImg-container {
-    display: inline-block;
-    margin-right: 12px;
-}
-
 .movieDetails-credits-persons .personImg-container .person-img {
     height: 100px;
     min-height: 100px;
@@ -930,10 +753,6 @@ img {
     padding: 10px;
 }
 
-.relatedMovies-title {
-    margin-bottom: 16px;
-}
-
 .relatedPreview-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -941,11 +760,6 @@ img {
     height: 180px;
     padding-left: 24px;
     padding-bottom: 16px;
-}
-
-.relatedPreview-movieList .movie-container {
-    display: inline-block;
-    margin-right: 8px;
 }
 
 .serieDetails {
@@ -968,7 +782,7 @@ img {
     align-items: center;
     position: fixed;
     border: 0 10px;
-    bottom: 10px;
+    bottom: 5px;
     right: 0;
     z-index: 101;
 }

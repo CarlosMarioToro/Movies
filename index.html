@@ -28,9 +28,8 @@
             <ul class="nav-links">
                 <li><a class="mnuPrincipal mnuCategories" href="#">Categorias</a></li>
                 <li><a class="mnuPrincipal mnuFavorites" href="#">Favoritos</a></li>
-                <li><a class="mnuPrincipal mnuMovies" href="#">Movies</a></li>
-                <li><a class="mnuPrincipal mnuSeries" href="#">Series</a></li>
-                <li><a class="mnuPrincipal mnuAboutMe" href="#">Sobre Mí</a></li>
+                <li><a class="mnuPrincipal mnuMovies" href="#movies">Movies</a></li>
+                <li><a class="mnuPrincipal mnuAboutMe" href="#footer">Sobre Mí</a></li>
             </ul>
         </div>
         <div class="containerMnu">
@@ -51,7 +50,6 @@
         
         <article class="searchPreview-movieList scrolling"></article>
     </section>
-    <section class="favorites inactive" id="favorites"></section>
     <section class="categories categoriesPreview inactive" id="categories">
         <h2 class="categories-title">Categorias</h2>
 
@@ -118,6 +116,18 @@
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
+        <section class="favorites" id="favorites">
+            <div class="favoritesPreview-header">
+                <h2 class="favoritesPreview-title">Favoritas</h2>
+                <button class="favoritesMore-btn">Ver más</button>
+            </div>
+            
+            <article class="favoritesPreview-movieList scrolling">
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>
+            </article>
+        </section>
         <section class="generic genericPreview inactive">            
             <article class="genericPreview-movieList scrolling">                
                 <div class="movie-container movie-container--loading"></div>
@@ -125,12 +135,6 @@
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-    </section>
-    <section class="series inactive" id="series">
-        <section class="airing airingPreview"></section>
-        <section class="onAir onAirPreview"></section>
-        <section class="popular popularPreview"></section>
-        <section class="topRated topRatedPreview"></section>
     </section>
     <section class="movieDetails inactive" id="movieDetails">
         <img class="movieDetails-image" src="" alt="">
@@ -152,19 +156,6 @@
             
             <article class="relatedPreview-movieList scrolling"></article>
         </section>
-    </section>
-    <section class="serieDetails inactive" id="serieDetails">
-        <img src="" alt="">
-        <div>
-            <h1 class="serieDetail-title"></h1>
-            <span class="serieDetail-Score"></span>
-        </div>
-        <div class="serieDetails-genres"></div>
-        <div class="serieDetails-description"></div>
-        <div class="serieDetails-seasons"></div>
-        <div class="serieDetails-credits"></div>
-        <section class="seriesRelated seriesRelatedPreview"></section>
-        <section class="seriesSeason relatedSeasonPreview"></section>
     </section>
     <section class="personDetails inactive" id="personDetails">
         <img src="" alt="">

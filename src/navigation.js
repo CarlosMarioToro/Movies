@@ -1,8 +1,5 @@
 let page = 1;
 
-const toggleButton = document.getElementById('button-menu')
-const navWrapper = document.getElementById('nav')
-
 toggleButton.addEventListener('click', () => {
     toggleButton.classList.toggle('close');
     navWrapper.classList.toggle('show');
@@ -98,15 +95,13 @@ function navigator() {
     document.documentElement.scrollTop = 0;
 }
 
-function homePage() {
+function homePage() {   
     searchSection.classList.remove('inactive');
-    favoritesSection.classList.add('inactive');
+    // favoritesSection.classList.add('inactive');
     categoriesSection.classList.add('inactive');
     categoriesMoviesPreviewList.classList.add('inactive');
     moviesSection.classList.remove('inactive');
     movieDetailsSection.classList.add('inactive');
-    seriesSection.classList.add('inactive');
-    serieDetailsSection.classList.add('inactive');
     personDetailsSection.classList.add('inactive');
     searchPreviewMovieList.classList.add('inactive');
 
@@ -212,7 +207,69 @@ function searchPage() {
 }
 
 function moviesPage() {
+    // navWrapper.classList.remove('show');
+    // toggleButton.classList.remove('close');
 
+    // searchSection.classList.remove('inactive');
+    // favoritesSection.classList.add('inactive');
+    // categoriesSection.classList.add('inactive');
+    // categoriesMoviesPreviewList.classList.add('inactive');
+    // moviesSection.classList.remove('inactive');
+    // movieDetailsSection.classList.add('inactive');
+    // seriesSection.classList.add('inactive');
+    // serieDetailsSection.classList.add('inactive');
+    // personDetailsSection.classList.add('inactive');
+    // searchPreviewMovieList.classList.add('inactive');
+
+    // iconBack.classList.add('inactive');
+    // movieDetailsSection.classList.add('inactive');
+
+    // playingMoviesPreviewList.classList.remove('playingPage-movieList');
+    // playingMoviesPreviewList.classList.add('playingPreview-movieList');
+    // playingMoviesPreviewList.classList.remove('inactive');
+    // popularSection.classList.remove('inactive');
+    // trendingSection.classList.remove('inactive');
+    // upcomingSection.classList.remove('inactive');
+    // topRatedSection.classList.remove('inactive');
+    // playingMoreBtn.classList.remove('inactive');
+
+    // popularMoviesPreviewList.classList.remove('popularPage-movieList');
+    // popularMoviesPreviewList.classList.add('popularPreview-movieList');
+    // popularMoviesPreviewList.classList.remove('inactive');
+    // popularMoreBtn.classList.remove('inactive');
+    // playingSection.classList.remove('inactive');
+    // trendingSection.classList.remove('inactive');
+    // upcomingSection.classList.remove('inactive');
+    // topRatedSection.classList.remove('inactive');
+
+    // trendingMoviesPreviewList.classList.remove('trendingPage-movieList');
+    // trendingMoviesPreviewList.classList.add('trendingPreview-movieList');
+    // trendingMoviesPreviewList.classList.remove('inactive');
+    // trendingMoreBtn.classList.remove('inactive');
+    // playingSection.classList.remove('inactive');
+    // popularSection.classList.remove('inactive');
+    // upcomingSection.classList.remove('inactive');
+    // topRatedSection.classList.remove('inactive');
+
+    // upcomingMoviesPreviewList.classList.remove('upcomingPage-movieList');
+    // upcomingMoviesPreviewList.classList.add('upcomingPreview-movieList');
+    // upcomingMoviesPreviewList.classList.remove('inactive');
+    // upcomingMoreBtn.classList.remove('inactive');
+    // playingSection.classList.remove('inactive');
+    // popularSection.classList.remove('inactive');
+    // trendingSection.classList.remove('inactive');
+    // topRatedSection.classList.remove('inactive');
+
+    // topRatedMoviesPreviewList.classList.remove('topRatedPage-movieList');
+    // topRatedMoviesPreviewList.classList.add('topRatedPreview-movieList');
+    // topRatedMoviesPreviewList.classList.remove('inactive');
+    // topRatedMoreBtn.classList.remove('inactive');
+    // playingSection.classList.remove('inactive');
+    // popularSection.classList.remove('inactive');
+    // trendingSection.classList.remove('inactive');
+    // upcomingSection.classList.remove('inactive');
+
+    // genericSection.classList.add('inactive');
 }
 
 function playingPage() {
