@@ -1,5 +1,4 @@
 const searchSection = document.querySelector('#search');
-const favoritesSection = document.querySelector('#favorites');
 const categoriesSection = document.querySelector('#categories');
 const moviesSection = document.querySelector('#movies');
 const movieDetailsSection = document.querySelector('#movieDetails');
@@ -57,6 +56,7 @@ const trendingSection = document.querySelector('.movies .trending');
 const upcomingSection = document.querySelector('.movies .upcoming');
 const topRatedSection = document.querySelector('.movies .topRated');
 const genericSection = document.querySelector('.movies .generic');
+const favoritesSection = document.querySelector('.movies .favorites');
 
 const peliculasEnPantalla2 = document.querySelectorAll('.playingPreview-movieList .movie-container');
 const peliculasPlaying = document.querySelectorAll('.playingPage-movieList .movie-container');

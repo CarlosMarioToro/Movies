@@ -51,6 +51,7 @@ topRatedMoreBtn.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
+window.addEventListener('storage', getLikedMovies, false);
 resizeHandler();
 
 function navigator() {
@@ -95,7 +96,8 @@ function navigator() {
     document.documentElement.scrollTop = 0;
 }
 
-function homePage() {   
+function homePage() { 
+    getLikedMovies();
     searchSection.classList.remove('inactive');
     // favoritesSection.classList.add('inactive');
     categoriesSection.classList.add('inactive');
@@ -154,10 +156,12 @@ function homePage() {
     upcomingSection.classList.remove('inactive');
 
     genericSection.classList.add('inactive');
+
+    favoritesSection.classList.remove('inactive');  
 }
 
-function favoritesPage() {
-
+function favoritesPage() { 
+    genericMoviesPreviewList.innerHTML = '';
 }
 
 function categoriesPage() {
@@ -176,7 +180,8 @@ function categoriesPage() {
     upcomingSection.classList.add('inactive');
     topRatedSection.classList.add('inactive'); 
     moviesSection.classList.remove('inactive');
-    genericSection.classList.remove('inactive'); 
+    genericSection.classList.remove('inactive');   
+    favoritesSection.classList.add('inactive');  
     genericMoviesPreviewList.classList.add('genericPage-movieList');
     genericMoviesPreviewList.classList.remove('genericPreview-movieList');
 
@@ -200,6 +205,7 @@ function searchPage() {
     upcomingSection.classList.add('inactive');
     topRatedSection.classList.add('inactive');
     genericSection.classList.remove('inactive');  
+    favoritesSection.classList.add('inactive');  
 
     genericMoviesPreviewList.innerHTML = '';
     getMoviesBySearchPage(query);
@@ -284,7 +290,8 @@ function playingPage() {
     popularSection.classList.add('inactive');
     trendingSection.classList.add('inactive');
     upcomingSection.classList.add('inactive');
-    topRatedSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');  
+    favoritesSection.classList.add('inactive');  
     genericSection.classList.remove('inactive');    
 
     genericMoviesPreviewList.innerHTML = '';
@@ -301,7 +308,8 @@ function popularPage() {
     popularMoviesPreviewList.classList.add('inactive');
     trendingSection.classList.add('inactive');
     upcomingSection.classList.add('inactive');
-    topRatedSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');  
+    favoritesSection.classList.add('inactive');  
     genericSection.classList.remove('inactive'); 
 
     genericMoviesPreviewList.innerHTML = '';
@@ -318,7 +326,8 @@ function trendingPage() {
     popularSection.classList.add('inactive');
     trendingMoviesPreviewList.classList.add('inactive');
     upcomingSection.classList.add('inactive');
-    topRatedSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');  
+    favoritesSection.classList.add('inactive');  
     genericSection.classList.remove('inactive'); 
 
     genericMoviesPreviewList.innerHTML = '';
@@ -335,7 +344,8 @@ function upcomingPage() {
     popularSection.classList.add('inactive');
     trendingSection.classList.add('inactive');
     upcomingMoviesPreviewList.classList.add('inactive');
-    topRatedSection.classList.add('inactive');
+    topRatedSection.classList.add('inactive');  
+    favoritesSection.classList.add('inactive');  
     genericSection.classList.remove('inactive'); 
 
     genericMoviesPreviewList.innerHTML = '';
@@ -351,15 +361,12 @@ function topRatedPage() {
     popularSection.classList.add('inactive');
     trendingSection.classList.add('inactive');
     upcomingSection.classList.add('inactive');
-    topRatedMoviesPreviewList.classList.add('inactive');
+    topRatedMoviesPreviewList.classList.add('inactive');  
+    favoritesSection.classList.add('inactive');  
     genericSection.classList.remove('inactive'); 
 
     genericMoviesPreviewList.innerHTML = '';
     getTopRatedMoviesPage();
-}
-
-function seriesPage() {
-
 }
 
 function movieDetailsPage() {
@@ -370,10 +377,6 @@ function movieDetailsPage() {
     DetailsCollection.classList.remove('inactive');
     searchPreviewMovieList.classList.add('inactive');
     categoriesMoviesPreviewList.classList.add('inactive');
-}
-
-function serieDetailsPage() {
-
 }
 
 function personDetailsPage() {

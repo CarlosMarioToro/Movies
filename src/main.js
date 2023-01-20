@@ -12,6 +12,29 @@ const api = axios.create({
 const API_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/';
 
+function likedMovieList() {
+    const item = JSON.parse(localStorage.getItem('liked_movies'));
+    let movies;
+    if (item) {
+        movies = item;
+    } else {
+        movies = {};
+    }
+
+    return movies;
+}
+
+function likeMovie(movie) {
+    const likedMovies = likedMovieList();
+    if (likedMovies[movie.id]) {
+        likedMovies[movie.id] = undefined
+    } else {
+        likedMovies[movie.id] = movie;
+    }
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
+}
+
 let observador = new IntersectionObserver((entradas) => {
     entradas.forEach(entrada => {
         if (entrada.isIntersecting) {
@@ -122,14 +145,16 @@ function createMovies(movies, container, clean = true) {
 
         const movieBtn = document.createElement('button');
         movieBtn.classList.add('movie-btn');
+        likedMovieList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
-            //AGREGAMOS PELICULAS A LOCAL STORAGE
+            likeMovie(movie)
         });
 
         movieImg.addEventListener('click', () => {
             location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
             getMovieDetails(movie.id);
+            getLikedMovies();
         });
 
         movieContainer.appendChild(movieImg);
@@ -430,4 +455,12 @@ async function getCategoriesMenu() {
         categoryContainer.appendChild(categorylist);
     });
     menuCategorias.appendChild(categoryContainer);
+}
+
+function getLikedMovies() {
+    const likedMovie = likedMovieList();
+    const moviesArray = Object.values(likedMovie);
+
+    createMovies(moviesArray, favoritesMoviesPreviewList)
+    console.log(likedMovie);
 }
