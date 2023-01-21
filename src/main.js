@@ -38,7 +38,6 @@ function likeMovie(movie) {
 let observador = new IntersectionObserver((entradas) => {
     entradas.forEach(entrada => {
         if (entrada.isIntersecting) {
-            console.log(caller);
             page++;
             if (caller === 'playing') {
                 getPlayingMoviesPage();                
@@ -103,20 +102,15 @@ function minutesToString(minutes) {
 }
 
 function observer(clean, qSelector) {
-    console.log(maxPage);
     if (page < maxPage) {
         if (!clean) {
             const peliculasPlaying = document.querySelectorAll(qSelector);
-
-            console.log(peliculasPlaying);
     
             if (ultimaPelicula) {
                 observador.unobserve(ultimaPelicula);
             }
     
             ultimaPelicula = peliculasPlaying[peliculasPlaying.length - 1];
-        
-            console.log(ultimaPelicula);
             observador.observe(ultimaPelicula); 
         }        
     }
@@ -126,8 +120,6 @@ function createMovies(movies, container, clean = true) {
     if (clean) {
         container.innerHTML = '';        
     }
-
-    console.log(movies);
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -154,7 +146,7 @@ function createMovies(movies, container, clean = true) {
         movieImg.addEventListener('click', () => {
             location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
             getMovieDetails(movie.id);
-            getLikedMovies();
+            getLikedMoviesPreview();
         });
 
         movieContainer.appendChild(movieImg);
@@ -184,6 +176,11 @@ async function getCredits(id) {
             personImg.setAttribute('alt', person.name);
             personImg.setAttribute('title', person.name);
             personImg.setAttribute('src', IMAGE_URL + imageSize + person.profile_path);
+
+            personImg.addEventListener('click', () => {
+                location.hash = `#person=${person.id}-${person.name}`;
+                getPersonDetails(person.id);
+            });
             
             personName.classList.add('personName');
             const personNameText = document.createTextNode(person.name);
@@ -228,6 +225,14 @@ async function getTrailers(id) {
             DetailsTrailersTrailer.appendChild(videoTrailerContainer);
         }
     })
+}
+
+async function getPersonFilmography(id) {
+    const { data } = await api(`/person/${id}/movie_credits`);
+
+    console.log(data.cast);
+
+    createMovies(data.cast, personMoviesPreviewList);
 }
 
 async function getPlayingMoviesPreview() {
@@ -291,7 +296,6 @@ async function getUpcomingMoviesPage() {
     const movies = data.results;
     caller = 'upcoming';
     maxPage = data.total_pages;
-    console.log(page);
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -399,13 +403,10 @@ async function getMoviesBySearchPage(query) {
         },
     });
 
-    console.log(data);
-
     const movies = data.results;
     caller = 'search';
     queries = query;
     maxPage = data.total_pages;
-    console.log(page);
     createMovies(movies, genericMoviesPreviewList, false);
 }
 
@@ -431,8 +432,6 @@ async function getCategoriesMoviesPreview(id) {
         },
     });
 
-    console.log(data);
-
     const movies = data.results;
     caller = 'category';
     catId = id;
@@ -457,10 +456,107 @@ async function getCategoriesMenu() {
     menuCategorias.appendChild(categoryContainer);
 }
 
-function getLikedMovies() {
+function getLikedMoviesPreview() {
     const likedMovie = likedMovieList();
     const moviesArray = Object.values(likedMovie);
 
-    createMovies(moviesArray, favoritesMoviesPreviewList)
-    console.log(likedMovie);
+    createMovies(moviesArray, favoritesMoviesPreviewList);
+}
+
+function getLikedMoviesPage() {
+    const likedMovie = likedMovieList();
+    const moviesArray = Object.values(likedMovie);
+
+    createMovies(moviesArray, genericMoviesPreviewList);
+}
+
+async function getPersonDetails(id) {
+    const { data } = await api('/person/' + id);
+
+    console.log(data);
+
+    personDetails.innerHTML = '';
+
+    const detailPerson_image = document.createElement('img');
+    const detailsName = document.createElement('h2');
+    const detailsPerson = document.createElement('article');
+    detailsPerson.classList.add('personDetails-description');
+    const detailsPerson_Title = document.createElement('h3');
+    const detailsPerson_PersonalInfo = document.createElement('div');
+    detailsPerson_PersonalInfo.classList.add('PersonaInfo');
+    const detailsPerson_Knowndiv = document.createElement('div');
+    const detailsPerson_Known = document.createElement('h4');
+    const detailsPerson_Known_Department = document.createElement('span');
+    const detailsPerson_Genderdiv = document.createElement('div');
+    const detailsPerson_Gender = document.createElement('h4');
+    const detailsPerson_Gender_Name = document.createElement('span');
+    const detailsPerson_Birthdaydiv = document.createElement('div');
+    const detailsPerson_Birthday = document.createElement('h4');
+    const detailsPerson_Birthday_Date = document.createElement('span');
+    const detailsPerson_Placediv = document.createElement('div');
+    const detailsPerson_Place = document.createElement('h4');
+    const detailsPerson_Place_City = document.createElement('span');
+    const detailsPerson_Biographydiv = document.createElement('div');
+    const detailsPerson_Biography = document.createElement('h4');
+    const detailsPerson_Biography_Bio = document.createElement('span');
+    
+    detailPerson_image.classList.add('personDetail-img');
+    detailPerson_image.setAttribute('alt', data.name);
+    detailPerson_image.setAttribute('src', IMAGE_URL + imageSize + data.profile_path);    
+    detailsName.classList.add('personDetail-name');
+    
+    const detailsNameText = document.createTextNode(data.name);
+    detailsName.appendChild(detailsNameText);
+    const detailsTitleText = document.createTextNode('Informacion personal');
+    detailsPerson_Title.appendChild(detailsTitleText);
+    const detailsKnownText = document.createTextNode('Conocido como:');
+    detailsPerson_Known.appendChild(detailsKnownText);
+    detailsPerson_Known_Department.innerText = data.known_for_department;
+    const detailsGenderText = document.createTextNode('Genero:');
+    detailsPerson_Gender.appendChild(detailsGenderText);
+    let genderId;
+    if (data.gender === 0) {
+        genderId = 'No Especificado';
+    } else if (data.gender === 1) {
+        genderId = 'Mujer';
+    } else if (data.gender === 2) {
+        genderId = 'Hombre';
+    } else if (data.gender === 3) {
+        genderId = 'No Binario';
+    }
+    detailsPerson_Gender_Name.innerText = genderId;
+    const detailsBirthdayText = document.createTextNode('Nacimiento:');
+    detailsPerson_Birthday.appendChild(detailsBirthdayText);
+    detailsPerson_Birthday_Date.innerText = data.birthday;
+    const detailsPlaceText = document.createTextNode('Lugar de nacimiento:');
+    detailsPerson_Place.appendChild(detailsPlaceText);
+    detailsPerson_Place_City.innerText = data.place_of_birth;
+    const detailsBiographyText = document.createTextNode('Biografia:');
+    detailsPerson_Biography.appendChild(detailsBiographyText);
+    detailsPerson_Biography_Bio.innerText = data.biography;
+    
+    detailsPerson.appendChild(detailsPerson_Title);
+    detailsPerson_Knowndiv.appendChild(detailsPerson_Known);
+    detailsPerson_Knowndiv.appendChild(detailsPerson_Known_Department);
+    detailsPerson_PersonalInfo.appendChild(detailsPerson_Knowndiv);
+    detailsPerson_Genderdiv.appendChild(detailsPerson_Gender);
+    detailsPerson_Genderdiv.appendChild(detailsPerson_Gender_Name);
+    detailsPerson_PersonalInfo.appendChild(detailsPerson_Genderdiv);
+    detailsPerson_Birthdaydiv.appendChild(detailsPerson_Birthday);
+    detailsPerson_Birthdaydiv.appendChild(detailsPerson_Birthday_Date);
+    detailsPerson_PersonalInfo.appendChild(detailsPerson_Birthdaydiv);
+    detailsPerson_Placediv.appendChild(detailsPerson_Place);
+    detailsPerson_Placediv.appendChild(detailsPerson_Place_City);
+    detailsPerson_PersonalInfo.appendChild(detailsPerson_Placediv);
+    detailsPerson_Biographydiv.appendChild(detailsPerson_Biography);
+    detailsPerson_Biographydiv.appendChild(detailsPerson_Biography_Bio);
+    detailsPerson_PersonalInfo.appendChild(detailsPerson_Biographydiv);
+    detailsPerson.appendChild(detailsPerson_PersonalInfo);
+    // detailsPerson.appendChild(detailsPerson_Filmography);
+
+    personDetails.appendChild(detailPerson_image);
+    personDetails.appendChild(detailsName);
+    personDetails.appendChild(detailsPerson);
+
+    getPersonFilmography(id);
 }

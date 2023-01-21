@@ -98,6 +98,12 @@ h3 {
     font-size: 1.6rem;
 }
 
+h4 {
+    color: var(--text-color);
+    font-weight: var(--font-weight-text1);
+    font-size: 1.4rem;
+}
+
 img {
     aspect-ratio: 2 / 3;
 }
@@ -401,7 +407,6 @@ img {
     transform: rotate(-90deg);
 }
 
-.favorites,
 .categories,
 .movies {
     width: 90vw;    
@@ -462,7 +467,9 @@ img {
 .trendingPreview-movieList,
 .upcomingPreview-movieList,
 .topRatedPreview-movieList,
-.genericPreview-movieList {
+.genericPreview-movieList,
+.relatedPreview-movieList,
+.personRelated-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -488,7 +495,8 @@ img {
 .genericPage-movieList .movie-container,
 .movieDetails-credits-persons .personImg-container,
 .relatedPreview-movieList .movie-container,
-.searchPreview-movieList .movie-container{
+.searchPreview-movieList .movie-container, 
+.personRelated-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
 }
@@ -508,8 +516,9 @@ img {
     flex-wrap: wrap;
 }
 
-.categories-title {
-    margin-left: 25px;
+.categories-title,
+.personDetail-name {
+    margin-left: 20px;
 }
 
 .categoriesPreview-movieList {
@@ -521,37 +530,20 @@ img {
     padding-bottom: 60px;
 }
 
-.playing {
+.playing,
+.popular,
+.trending,
+.upcoming,
+.topRated,
+.generic,
+.favorites,
+.personDetails {
     width: 100%;
     padding: 10px;
 }
 
-.popular {
-    width: 100%;
-    padding: 10px;
-}
-
-.trending {
-    width: 100%;
-    padding: 10px;
-}
-
-.upcoming {
-    width: 100%;
-    padding: 10px;
-}
-
-.topRated {
-    width: 100%;
-    padding: 10px;
-}
-
-.generic {
-    width: 100%;
-    padding: 10px;
-}
-
-.movieDetails {
+.movieDetails,
+.personDetails {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -560,7 +552,8 @@ img {
     padding-bottom: 60px;
 }
 
-.movieDetails-image {
+.movieDetails-image,
+.personDetail-img {
     width: 100vw;
     height: 250px;
 }
@@ -677,7 +670,8 @@ img {
     height: 220px;
 }
 
-.movieDetails-credits-title {
+.movieDetails-credits-title,
+.personDetails-description {
     margin-bottom: 16px;
     padding: 10px 24px;
 }
@@ -753,20 +747,7 @@ img {
     padding: 10px;
 }
 
-.relatedPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    height: 180px;
-    padding-left: 24px;
-    padding-bottom: 16px;
-}
-
 .serieDetails {
-    width: 100vw;
-}
-
-.personDetails {
     width: 100vw;
 }
 

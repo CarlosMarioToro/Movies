@@ -45,10 +45,18 @@ const upcomingMoreBtn = document.querySelector('.upcomingMore-btn');
 const topRatedMoviesPreviewList = document.querySelector('.topRatedPreview-movieList');
 const topRatedPreviewMovieList = document.querySelector('.topRated .topRatedPreview-movieList');
 const topRatedMoreBtn = document.querySelector('.topRatedMore-btn');
+const favoriteMoviesPreviewList = document.querySelector('.favoritesPreview-movieList');
+const favoritePreviewMovieList = document.querySelector('.favorites .favoritesPreview-movieList');
+const favoriteMoreBtn = document.querySelector('.favoritesMore-btn');
 const genericMoviesPreviewList = document.querySelector('.genericPreview-movieList');
 const genericPreviewMovieList = document.querySelector('.generic .genericPreview-movieList');
 const relatedPreviewMovieList = document.querySelector('.moviesRelated .moviesRelatedPreview-movieList');
 const relatedMoviesPreviewList = document.querySelector('.relatedPreview-movieList');
+
+const personMoviesPreviewList = document.querySelector('.personRelated-movieList');
+const personPreviewMovieList = document.querySelector('.personDetails .personRelated-movieList');
+const personDetails = document.querySelector('.personDetails_Details');
+const personMoreBtn = document.querySelector('.personMore-btn');
 
 const playingSection = document.querySelector('.movies .playing');
 const popularSection = document.querySelector('.movies .popular');

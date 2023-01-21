@@ -32,6 +32,12 @@
                 <li><a class="mnuPrincipal mnuAboutMe" href="#footer">Sobre Mí</a></li>
             </ul>
         </div>
+        <!-- <select name="language" id="la">            
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="pt-BR">Portuguese Br</option>
+            <option value="fr">French</option>
+        </select> -->
         <div class="containerMnu">
             <form id="searchFormMnu" class="header-searchForm">
                 <input class="mainMnu" placeholder="Buscar"/><span class="searchicon"></span>
@@ -154,16 +160,23 @@
         <section class="moviesRelated moviesRelatedPreview" id="relate">
             <h2 class="relatedMovies-title">Películas similares</h2>
             
-            <article class="relatedPreview-movieList scrolling"></article>
+            <article class="relatedPreview-movieList scrolling">
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>  
+            </article>
         </section>
     </section>
     <section class="personDetails inactive" id="personDetails">
-        <img src="" alt="">
-        <div>
-            <h1 class="personDetail-title"></h1>
-        </div>
-        <div class="movieDetails-description"></div>
-        <section class="moviesRelated moviesRelatedPreview"></section>
+        <div class="personDetails_Details"></div>
+        <section class="personRelated personRelatedPreview" id="personRelate">
+            <h2 class="personMovies-title">Filmografia</h2>
+            <article class="personRelated-movieList scrolling">
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>
+                <div class="movie-container movie-container--loading"></div>                
+            </article>
+        </section>
     </section>
     <section class="footer" id="aboutMe">
         <footer>Hecho con Amor por Carlos Toro</footer>
