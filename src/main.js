@@ -483,22 +483,39 @@ async function getPersonDetails(id) {
     detailsPerson.classList.add('personDetails-description');
     const detailsPerson_Title = document.createElement('h3');
     const detailsPerson_PersonalInfo = document.createElement('div');
-    detailsPerson_PersonalInfo.classList.add('PersonaInfo');
+    detailsPerson_PersonalInfo.classList.add('PersonalInfo');
     const detailsPerson_Knowndiv = document.createElement('div');
     const detailsPerson_Known = document.createElement('h4');
     const detailsPerson_Known_Department = document.createElement('span');
+    detailsPerson_Known_Department.classList.add('personDepartment');
     const detailsPerson_Genderdiv = document.createElement('div');
     const detailsPerson_Gender = document.createElement('h4');
     const detailsPerson_Gender_Name = document.createElement('span');
+    detailsPerson_Gender_Name.classList.add('personGender');
     const detailsPerson_Birthdaydiv = document.createElement('div');
     const detailsPerson_Birthday = document.createElement('h4');
     const detailsPerson_Birthday_Date = document.createElement('span');
+    detailsPerson_Birthday_Date.classList.add('personBirthday');
     const detailsPerson_Placediv = document.createElement('div');
     const detailsPerson_Place = document.createElement('h4');
     const detailsPerson_Place_City = document.createElement('span');
+    detailsPerson_Place_City.classList.add('personCity');
     const detailsPerson_Biographydiv = document.createElement('div');
     const detailsPerson_Biography = document.createElement('h4');
     const detailsPerson_Biography_Bio = document.createElement('span');
+    detailsPerson_Biography_Bio.classList.add('personBio');
+    const detailsPerson_ReadBtn = document.createElement('button');
+    detailsPerson_ReadBtn.classList.add('readMore_btn');
+    detailsPerson_ReadBtn.innerText = 'Leer Más';
+
+    detailsPerson_ReadBtn.addEventListener('click', () => {
+        detailsPerson_Biography_Bio.classList.toggle('show');
+        if (detailsPerson_Biography_Bio.classList.contains('show')) {
+            detailsPerson_ReadBtn.innerText = 'Leer Menos';
+        } else {
+            detailsPerson_ReadBtn.innerText = 'Leer Más';
+        }
+    });
     
     detailPerson_image.classList.add('personDetail-img');
     detailPerson_image.setAttribute('alt', data.name);
@@ -550,6 +567,7 @@ async function getPersonDetails(id) {
     detailsPerson_PersonalInfo.appendChild(detailsPerson_Placediv);
     detailsPerson_Biographydiv.appendChild(detailsPerson_Biography);
     detailsPerson_Biographydiv.appendChild(detailsPerson_Biography_Bio);
+    detailsPerson_Biographydiv.appendChild(detailsPerson_ReadBtn);
     detailsPerson_PersonalInfo.appendChild(detailsPerson_Biographydiv);
     detailsPerson.appendChild(detailsPerson_PersonalInfo);
     // detailsPerson.appendChild(detailsPerson_Filmography);

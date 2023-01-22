@@ -536,8 +536,7 @@ img {
 .upcoming,
 .topRated,
 .generic,
-.favorites,
-.personDetails {
+.favorites {
     width: 100%;
     padding: 10px;
 }
@@ -674,6 +673,29 @@ img {
 .personDetails-description {
     margin-bottom: 16px;
     padding: 10px 24px;
+}
+
+.PersonalInfo {
+    width: 95%;
+}
+
+.PersonalInfo .personBio {
+    display: block;
+    margin: 10px 5px;
+    color: var(--purple-light);
+    height: 50px;
+    overflow: hidden;
+}
+
+.readMore_btn {
+    width: 80px;
+    padding: 6px;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.PersonalInfo .show {
+    height: auto;
 }
 
 .movieDetails-credits-persons {
