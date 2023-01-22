@@ -468,14 +468,20 @@ img {
 .upcomingPreview-movieList,
 .topRatedPreview-movieList,
 .genericPreview-movieList,
-.relatedPreview-movieList,
-.personRelated-movieList {
+.relatedPreview-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     padding-left: 4px;
     padding-bottom: 12px;
     justify-content: center;
+}
+
+.personRelated-movieList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .favoritesPreview-movieList .movie-container,
@@ -495,10 +501,24 @@ img {
 .genericPage-movieList .movie-container,
 .movieDetails-credits-persons .personImg-container,
 .relatedPreview-movieList .movie-container,
-.searchPreview-movieList .movie-container, 
-.personRelated-movieList .movie-container {
+.searchPreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
+}
+
+.personRelated-movieList .movie-container {
+    width: 100%;
+    background: var(--background-detalles);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personRelated-movieList .movie-container div {
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }
 
 .favoritesPage-movieList,
@@ -555,6 +575,17 @@ img {
 .personDetail-img {
     width: 100vw;
     height: 250px;
+}
+
+.personMovieDetails-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--text-color);
+    background: var(--button1);
+    border-radius: 100%;
 }
 
 .movieDetails-characteristics {
@@ -679,6 +710,14 @@ img {
     width: 95%;
 }
 
+.PersonalInfo span {
+    display: block;
+    margin: 10px 5px;
+    color: var(--purple-light);
+    height: auto;
+    overflow: hidden;
+}
+
 .PersonalInfo .personBio {
     display: block;
     margin: 10px 5px;
@@ -763,7 +802,8 @@ img {
     text-overflow: ellipsis;
 }
 
-.moviesRelated {
+.moviesRelated,
+.personRelated {
     width: 95%;
     height: 250px;
     padding: 10px;

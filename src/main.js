@@ -116,6 +116,67 @@ function observer(clean, qSelector) {
     }
 }
 
+function createVerticalMovies(movies, container, clean = true) {
+    if (clean) {
+        container.innerHTML = '';        
+    }
+
+    movies.forEach(movie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const movieImg = document.createElement('img');
+        movieImg.classList.add('movie-img');
+        movieImg.setAttribute('alt', movie.title);
+        movieImg.setAttribute('title', movie.title);
+        movieImg.setAttribute('loading', 'lazy');
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
+        movieImg.addEventListener('error', () => {
+            movieImg.setAttribute('src', '../assets/error.png');
+        });
+
+        const movieDetailContainer = document.createElement('div');
+
+        const movieImg_title = document.createElement('h4');
+        const movieImg_titleText = document.createTextNode(movie.title);
+        movieImg_title.appendChild(movieImg_titleText);
+
+        const movieImg_date = document.createElement('span');
+        const movieImg_dateText = document.createTextNode(movie.release_date);
+        movieImg_date.appendChild(movieImg_dateText);
+
+        const detailsScore = document.createElement('span');
+        detailsScore.classList.add('personMovieDetails-score');
+        const average = movie.vote_average;
+        const detailsScoreText = document.createTextNode(Number(average.toFixed(2)));
+        detailsScore.appendChild(detailsScoreText);
+
+        const movieBtn = document.createElement('button');
+        movieBtn.classList.add('movie-btn');
+        likedMovieList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
+        movieBtn.addEventListener('click', () => {
+            movieBtn.classList.toggle('movie-btn--liked');
+            likeMovie(movie)
+        });
+
+        movieImg.addEventListener('click', () => {
+            location.hash = `#movieDetails=${movie.id}-${movie.original_title}`;
+            getMovieDetails(movie.id);
+            getLikedMoviesPreview();
+        });
+
+        movieContainer.appendChild(movieImg);
+        movieDetailContainer.appendChild(movieImg_title);        
+        movieDetailContainer.appendChild(movieImg_date);        
+        movieContainer.appendChild(movieDetailContainer);
+        movieContainer.appendChild(detailsScore);
+        movieContainer.appendChild(movieBtn);
+        container.appendChild(movieContainer); 
+
+    });
+    observer(clean, '.genericPage-movieList .movie-container');
+}
+
 function createMovies(movies, container, clean = true) {
     if (clean) {
         container.innerHTML = '';        
@@ -154,8 +215,7 @@ function createMovies(movies, container, clean = true) {
         container.appendChild(movieContainer); 
 
     });
-    observer(clean, '.genericPage-movieList .movie-container'); 
-    
+    observer(clean, '.genericPage-movieList .movie-container');
 }
 
 async function getCredits(id) {
@@ -232,7 +292,7 @@ async function getPersonFilmography(id) {
 
     console.log(data.cast);
 
-    createMovies(data.cast, personMoviesPreviewList);
+    createVerticalMovies(data.cast, personMoviesPreviewList);
 }
 
 async function getPlayingMoviesPreview() {
@@ -570,7 +630,6 @@ async function getPersonDetails(id) {
     detailsPerson_Biographydiv.appendChild(detailsPerson_ReadBtn);
     detailsPerson_PersonalInfo.appendChild(detailsPerson_Biographydiv);
     detailsPerson.appendChild(detailsPerson_PersonalInfo);
-    // detailsPerson.appendChild(detailsPerson_Filmography);
 
     personDetails.appendChild(detailPerson_image);
     personDetails.appendChild(detailsName);
