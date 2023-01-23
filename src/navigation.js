@@ -92,6 +92,8 @@ function navigator() {
         serieDetailsPage();
     } else if (location.hash.startsWith('#person=')) {
         personDetailsPage();
+    } else if (location.hash.startsWith('#collection=')) {
+        collectionDetailsPage();
     } else {
         homePage();
     }
@@ -403,5 +405,9 @@ function movieDetailsPage() {
 function personDetailsPage() {
     movieDetailsSection.classList.add('inactive');
     personDetailsSection.classList.remove('inactive');
+}
 
+function collectionDetailsPage() {
+    collectionDetailsSection.classList.remove('inactive');
+    movieDetailsSection.classList.add('inactive');
 }

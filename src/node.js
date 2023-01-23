@@ -5,6 +5,7 @@ const movieDetailsSection = document.querySelector('#movieDetails');
 const seriesSection = document.querySelector('#series');
 const serieDetailsSection = document.querySelector('#serieDetails');
 const personDetailsSection = document.querySelector('#personDetails');
+const collectionDetailsSection = document.querySelector('#collectionDetails');
 const footerSection = document.querySelector('#aboutMe');
 
 const toggleButton = document.getElementById('button-menu')
@@ -57,6 +58,11 @@ const personMoviesPreviewList = document.querySelector('.personRelated-movieList
 const personPreviewMovieList = document.querySelector('.personDetails .personRelated-movieList');
 const personDetails = document.querySelector('.personDetails_Details');
 const personMoreBtn = document.querySelector('.personMore-btn');
+
+const collectionMoviesPreviewList = document.querySelector('.collectionRelated-movieList');
+const collectionPreviewMovieList = document.querySelector('.collectionDetails .collectionRelated-movieList');
+const collectionDetails = document.querySelector('.collectionDetails_Details');
+const collectionMoreBtn = document.querySelector('.collectionMore-btn');
 
 const playingSection = document.querySelector('.movies .playing');
 const popularSection = document.querySelector('.movies .popular');

@@ -467,8 +467,7 @@ img {
 .trendingPreview-movieList,
 .upcomingPreview-movieList,
 .topRatedPreview-movieList,
-.genericPreview-movieList,
-.relatedPreview-movieList {
+.genericPreview-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -477,11 +476,14 @@ img {
     justify-content: center;
 }
 
-.personRelated-movieList {
+.personRelated-movieList,
+.relatedPreview-movieList,
+.collectionRelated-movieList {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding-bottom: 60px;
 }
 
 .favoritesPreview-movieList .movie-container,
@@ -500,13 +502,14 @@ img {
 .genericPreview-movieList .movie-container,
 .genericPage-movieList .movie-container,
 .movieDetails-credits-persons .personImg-container,
-.relatedPreview-movieList .movie-container,
 .searchPreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
 }
 
-.personRelated-movieList .movie-container {
+.personRelated-movieList .movie-container,
+.relatedPreview-movieList .movie-container,
+.collectionRelated-movieList .movie-container {
     width: 100%;
     background: var(--background-detalles);
     display: flex;
@@ -514,7 +517,8 @@ img {
     align-items: center;
 }
 
-.personRelated-movieList .movie-container div {
+.personRelated-movieList .movie-container .characteristics,
+.collectionRelated-movieList .movie-container .characteristics {
     width: 170px;
     display: flex;
     flex-direction: column;
@@ -537,7 +541,9 @@ img {
 }
 
 .categories-title,
-.personDetail-name {
+.personDetail-name,
+.collectionDetails_Details h4,
+.collectionDetails_Details span {
     margin-left: 20px;
 }
 
@@ -562,7 +568,8 @@ img {
 }
 
 .movieDetails,
-.personDetails {
+.personDetails,
+.collectionDetails {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -572,7 +579,8 @@ img {
 }
 
 .movieDetails-image,
-.personDetail-img {
+.personDetail-img,
+.collectionDetail-img {
     width: 100vw;
     height: 250px;
 }
@@ -706,19 +714,8 @@ img {
     padding: 10px 24px;
 }
 
-.PersonalInfo {
-    width: 95%;
-}
-
-.PersonalInfo span {
-    display: block;
-    margin: 10px 5px;
-    color: var(--purple-light);
-    height: auto;
-    overflow: hidden;
-}
-
-.PersonalInfo .personBio {
+.PersonalInfo .personBio,
+.collectionOverview {
     display: block;
     margin: 10px 5px;
     color: var(--purple-light);
@@ -803,7 +800,8 @@ img {
 }
 
 .moviesRelated,
-.personRelated {
+.personRelated,
+.collectionRelated {
     width: 95%;
     height: 250px;
     padding: 10px;

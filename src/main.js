@@ -136,6 +136,7 @@ function createVerticalMovies(movies, container, clean = true) {
         });
 
         const movieDetailContainer = document.createElement('div');
+        movieDetailContainer.classList.add('characteristics')
 
         const movieImg_title = document.createElement('h4');
         const movieImg_titleText = document.createTextNode(movie.title);
@@ -287,12 +288,35 @@ async function getTrailers(id) {
     })
 }
 
+function sortJSON(data, key, orden) {
+    return data.sort(function (a, b) {
+        var x = a[key],
+        y = b[key];
+
+        if (orden === 'asc') {
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        }
+
+        if (orden === 'desc') {
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        }
+    });
+}
+
 async function getPersonFilmography(id) {
     const { data } = await api(`/person/${id}/movie_credits`);
 
-    console.log(data.cast);
+    let oJSON = sortJSON(data.cast, 'vote_average', 'desc');
 
     createVerticalMovies(data.cast, personMoviesPreviewList);
+}
+
+async function getCollectionMovies(id) {
+    const { data } = await api(`/collection/${id}`);
+
+    let oJSON = sortJSON(data.parts, 'vote_average', 'desc');
+
+    createVerticalMovies(data.parts, collectionMoviesPreviewList);
 }
 
 async function getPlayingMoviesPreview() {
@@ -402,6 +426,11 @@ async function getMovieDetails(id) {
         const detailDescriptionCollection_image = document.createElement('img');
         detailDescriptionCollection_button.innerText = 'VER LA COLECCION';
         detailDescriptionCollection_button.classList.add('movieDetails-collectionsBtn');
+        detailDescriptionCollection_button.addEventListener('click', () => {
+            location.hash = `#collection=${data.belongs_to_collection.id}`;
+            getCollectionDetails(data.belongs_to_collection.id);
+        });
+
         detailDescriptionCollection_image.classList.add('movieCollection-img');
         detailDescriptionCollection_image.setAttribute('alt', data.title);
         detailDescriptionCollection_image.setAttribute('src', IMAGE_URL + imageSize + data.belongs_to_collection.backdrop_path);        
@@ -452,7 +481,7 @@ async function getRelatedMoviesPreview(id) {
     const { data } = await api('/movie/' + id + '/similar');
 
     const movies = data.results;
-    createMovies(movies, relatedMoviesPreviewList);
+    createVerticalMovies(movies, relatedMoviesPreviewList);
 }
 
 async function getMoviesBySearchPage(query) {
@@ -532,8 +561,6 @@ function getLikedMoviesPage() {
 
 async function getPersonDetails(id) {
     const { data } = await api('/person/' + id);
-
-    console.log(data);
 
     personDetails.innerHTML = '';
 
@@ -636,4 +663,28 @@ async function getPersonDetails(id) {
     personDetails.appendChild(detailsPerson);
 
     getPersonFilmography(id);
+}
+
+async function getCollectionDetails(id) {
+    const { data } = await api(`/collection/${id}`);
+
+    collectionDetails.innerHTML = '';
+
+    const detailCollection_image = document.createElement('img');
+    const detailsCollection_Overview = document.createElement('h4');
+    const detailsCollection_Overview_Text = document.createElement('span');
+    detailsCollection_Overview_Text.classList.add('collectionOverview');
+
+    detailCollection_image.classList.add('collectionDetail-img');
+    detailCollection_image.setAttribute('alt', data.name);
+    detailCollection_image.setAttribute('src', IMAGE_URL + imageSize + data.backdrop_path);
+    const detailsCollectionText = document.createTextNode('Sinopsis');
+    detailsCollection_Overview.appendChild(detailsCollectionText);
+    detailsCollection_Overview_Text.innerText = data.overview;
+
+    collectionDetails.appendChild(detailCollection_image);
+    collectionDetails.appendChild(detailsCollection_Overview);
+    collectionDetails.appendChild(detailsCollection_Overview_Text);
+
+    getCollectionMovies(id);
 }
