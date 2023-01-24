@@ -63,10 +63,6 @@ body {
     font-family: var(--font-family-text)
 }
 
-section {
-    padding: 1vw 0;
-}
-
 button {
     background-color: var(--color-botones);
     border: none;
@@ -313,10 +309,6 @@ img {
     transform: rotate(-45deg) translate(-4px, 4px);
 }
 
-.container {
-    position: relative;
-}
-
 .main {
     position: relative;
     border: 2px solid #5F8FA4;
@@ -340,6 +332,11 @@ img {
     display: flex;
     flex-direction: column;
     width: 100vw;
+}
+
+.header-searchForm {
+    margin-top: 10px;     
+    position: relative;/* justify-self: flex-end; */
 }
 
 .search .container {
@@ -481,7 +478,8 @@ img {
 .collectionRelated-movieList {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 5px;
     padding-bottom: 60px;
 }
@@ -511,6 +509,8 @@ img {
 .relatedPreview-movieList .movie-container,
 .collectionRelated-movieList .movie-container {
     width: 100%;
+    max-width: 45%;
+    min-width: 350px;
     background: var(--background-detalles);
     display: flex;
     justify-content: space-between;
@@ -533,6 +533,7 @@ img {
 .topRatedPage-movieList,
 .genericPage-movieList {
     width: 100%;
+    max-width: 691px;
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -564,6 +565,8 @@ img {
 .generic,
 .favorites {
     width: 100%;
+    display: grid;
+    justify-content: center;
     padding: 10px;
 }
 
@@ -822,7 +825,6 @@ img {
     justify-content: space-evenly;
     align-items: center;
     position: fixed;
-    border: 0 10px;
     bottom: 5px;
     right: 0;
     z-index: 101;
@@ -930,6 +932,23 @@ img {
     .mainMnu:focus {
         outline: none;
     }
+
+    .search {
+        width: 95%;
+    }
+
+    .search .container {
+        width: 100%;
+        display: grid;
+        justify-content: flex-end;
+        /* align-self: center;
+        margin-bottom: 25px; */
+    }
+
+    .header-searchForm {
+        margin: 20px;     
+        position: relative;/* justify-self: flex-end; */
+    }
     
     .searchicon {
         position: absolute;
@@ -937,12 +956,118 @@ img {
         width: 12px;
         background: transparent;
         border: 3px solid #5F8FA4;
-        left: 10px;
-        top: 8px;
+        right: 100px;
+        /* top: 8px; */
         border-radius: 100%;
     }
+
+    .movieDetails,
+    .personDetails,
+    .collectionDetails {
+        align-items: center;
+    }
+
+    .movieDetails-image,
+    .personDetail-img,
+    .collectionDetail-img,
+    .movieCollection-img {
+        width: 50vw;
+        height: 250px;
+    }
+
+    .movieDetails-characteristics,
+    .movieDetails-genres,
+    .movieDetails-genres {
+        width: 50%;
+    }
+
+    .movieDetails-credits,
+    .movieDetails-trailers,
+    .moviesRelated,
+    .personRelated,
+    .collectionRelated {
+        width: 75%;
+    }
+
+    .personRelated-movieList,
+    .relatedPreview-movieList,
+    .collectionRelated-movieList {
+        width: 100%;
+    }
+
+    .personRelated-movieList .movie-container,
+    .relatedPreview-movieList .movie-container,
+    .collectionRelated-movieList .movie-container {
+        width: 60%;
+    }
+
+    .movieDetails-collections button {
+        width: 25%;
+    }
+
+    /* .movieDetails,
+    .personDetails,
+    .collectionDetails {
+        width: 100vw;
+        display: grid;
+        grid-template-columns: repeat(4, 25vw);
+        grid-template-rows: repeat(auto, 30px);
+        gap: 12px;
+        margin: 0 10px;
+        padding-bottom: 60px;
+    }
+
+    .movieDetails-image {
+        grid-column: 1 / 3;
+        grid-row: 1 / 7;
+    }
+
+    .movieDetails-characteristics {
+        grid-column: 3 / 5;
+        grid-row: 1 / 2;
+    }    
+
+    .movieDetails-duration {
+        grid-column: 3 / 5;
+        grid-row: 2 / 3;
+    }
+
+    .movieDetails-genres {
+        grid-column: 3 / 5;
+        grid-row: 3 / 5;
+        width: 500px;
+        display: flex;
+        gap: 10px;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .movieDetails-description {
+        grid-column: 3 / 5;
+        grid-row: 5 / 6;
+    }
+
+    .movieDetails-collections {
+        grid-column: 2 / 4;
+        grid-row: 6 / 8;
+    }
+
+    .movieDetails-credits {
+        grid-row: 8 / 9;
+    }
+
+    .movieDetails-trailers {
+        grid-row: 9 /10;
+    }
+
+    .moviesRelated {
+        grid-row: 10 / 15;
+    }
+
+     */
     
-    .searchicon::after {
+    /* .searchicon::after {
         content: '';
         position: absolute;
         background: #5F8FA4;
@@ -951,5 +1076,5 @@ img {
         bottom: -5px;
         right: -3px;
         transform: rotate(-45deg);
-    }
+    } */
 }
