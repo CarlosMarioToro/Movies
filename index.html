@@ -21,7 +21,7 @@
             <span></span>
             <span></span>
         </button>
-        <header class="">
+        <header class="mainHeader">
             <h1 class="header-title">MOVIES DB</h1>
         </header>
         <div class="main-nav" id="nav">
@@ -32,29 +32,14 @@
                 <li><a class="mnuPrincipal mnuAboutMe" href="#footer">Sobre Mí</a></li>
             </ul>
         </div>
-        <!-- <select name="language" id="la">            
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="pt-BR">Portuguese Br</option>
-            <option value="fr">French</option>
-        </select> -->
         <div class="containerMnu">
             <form id="searchFormMnu" class="header-searchForm">
                 <input class="mainMnu" placeholder="Buscar"/><span class="searchicon"></span>
             </form>
         </div>
     </section>
-    <section class="iconBack inactive">
-        <span class="backicon"></span>
-    </section>
-    <section class="search" id="search">
-        <div class="container">
-            <form id="searchForm" class="header-searchForm">
-                <input class="main" placeholder="Buscar"/><span class="searchicon"></span>
-            </form>
-        </div>
-        
-        <article class="searchPreview-movieList scrolling"></article>
+    <section class="iconBackSection">
+        <svg class="iconBack inactive" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
     </section>
     <section class="categories categoriesPreview inactive" id="categories">
         <h2 class="categories-title">Categorias</h2>
@@ -62,80 +47,81 @@
         <article class="categoriesPreview-movieList"></article>
     </section>
     <section class="movies inactive" id="movies">
-        <section class="playing playingPreview">
-            <div class="playingPreview-header">
-                <h2 class="playingPreview-title">Cartelera</h2>
-                <button class="playingMore-btn">Ver más</button>
+        <section class="playing preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Cartelera</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="playingPreview-movieList scrolling">
+            <article class="preview-movieList scrolling">
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="popular popularPreview">
-            <div class="popularPreview-header">
-                <h2 class="popularPreview-title">Populares</h2>
-                <button class="popularMore-btn">Ver más</button>
+        <section class="popular preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Populares</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="popularPreview-movieList scrolling">                
+            <article class="preview-movieList scrolling">                
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="trending trendingPreview">
-            <div class="trendingPreview-header">
-                <h2 class="trendingPreview-title">Tendencias</h2>
-                <button class="trendingMore-btn">Ver más</button>
+        <section class="trending preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Tendencias</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="trendingPreview-movieList scrolling">
+            <article class="preview-movieList scrolling">
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="upcoming upcomingPreview">
-            <div class="upcomingPreview-header">
-                <h2 class="upcomingPreview-title">Próximas películas</h2>
-                <button class="upcomingMore-btn">Ver más</button>
+        <section class="upcoming preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Próximas películas</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="upcomingPreview-movieList scrolling">
+            <article class="preview-movieList scrolling">
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="topRated topRatedPreview">
-            <div class="topRatedPreview-header">
-                <h2 class="topRatedPreview-title">Mejor valoradas</h2>
-                <button class="topRatedMore-btn">Ver más</button>
+        <section class="topRated preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Mejor valoradas</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="topRatedPreview-movieList scrolling">                
+            <article class="preview-movieList scrolling">                
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="favorites" id="favorites">
-            <div class="favoritesPreview-header">
-                <h2 class="favoritesPreview-title">Favoritas</h2>
-                <button class="favoritesMore-btn">Ver más</button>
+        <section class="favorites preview inactive">
+            <div class="preview-header">
+                <h2 class="preview-title">Favoritas</h2>
+                <button class="more-btn">Ver más</button>
             </div>
             
-            <article class="favoritesPreview-movieList scrolling">
+            <article class="preview-movieList scrolling">
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
             </article>
         </section>
-        <section class="generic genericPreview inactive">            
-            <article class="genericPreview-movieList scrolling">                
+        <section class="generic preview inactive"> 
+            <h4 class="sectionTitle"></h4>           
+            <article class="preview-movieList">                
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>
@@ -150,7 +136,7 @@
         <div class="movieDetails-description"></div>
         <div class="movieDetails-collections"></div>
         <div class="movieDetails-credits movieDetailsPreview">            
-            <h2 class="movieDetails-credits-title">Reparto</h2>
+            <h2 class="preview-header">Reparto</h2>
             <article class="movieDetails-credits-persons scrolling"></article>
         </div>
         <div class="movieDetails-trailers trailersPreview">
@@ -158,8 +144,7 @@
             <article class="movieDetails-trailers-trailer scrolling"></article>
         </div>
         <section class="moviesRelated moviesRelatedPreview" id="relate">
-            <h2 class="relatedMovies-title">Películas similares</h2>
-            
+            <h2 class="relatedMovies-title">Películas similares</h2>            
             <article class="relatedPreview-movieList scrolling">
                 <div class="movie-container movie-container--loading"></div>
                 <div class="movie-container movie-container--loading"></div>

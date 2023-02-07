@@ -12,6 +12,26 @@ const api = axios.create({
 const API_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/';
 
+let imageSize = 'w342';
+let ultimaPelicula;
+let caller;
+let queries;
+let maxPage;
+let catId;
+
+function resizeHandler() {
+    // get window width
+    if (window.matchMedia("(max-width: 375px)").matches) {
+        searchHeader.classList.add('inactive');  
+        imageSize = 'w342';
+    } else if (window.matchMedia("(min-width: 376px) and (max-width: 767px)").matches) {
+        searchHeader.classList.remove('inactive');   
+        imageSize = 'w500';     
+    } else if (window.matchMedia("(min-width: 768px)").matches) {
+        imageSize = 'original';   
+    }
+}
+
 function likedMovieList() {
     const item = JSON.parse(localStorage.getItem('liked_movies'));
     let movies;
@@ -60,40 +80,6 @@ let observador = new IntersectionObserver((entradas) => {
     rootMargin: '0px 0px 0px 0px',
     threshold: 1.0
 });
-
-let imageSize = 'w342';
-let ultimaPelicula;
-let caller;
-let queries;
-let maxPage;
-let catId;
-
-function resizeHandler() {
-    // get window width
-    if (window.matchMedia("(max-width: 375px)").matches) {        
-        searchFormContainer.classList.remove('inactive');
-        searchFormMnuContainer.classList.add('inactive');
-        searchSection.classList.remove('inactive');
-        imageSize = 'w342';
-    } else if (window.matchMedia("(min-width: 376px) and (max-width: 992px)").matches) {       
-        searchFormContainer.classList.remove('inactive');
-        searchFormMnuContainer.classList.add('inactive');
-        searchSection.classList.remove('inactive');
-        imageSize = 'w500';     
-    } else if (window.matchMedia("(min-width: 993px)").matches) {
-        searchFormContainer.classList.add('inactive');
-        searchFormMnuContainer.classList.remove('inactive');
-        searchSection.classList.add('inactive');
-        imageSize = 'original';   
-    }
-    getCategoriesMenu();
-    getPlayingMoviesPreview();
-    getPopularMoviesPreview();
-    getTrendingMoviesPreview();
-    getUpcomingMoviesPreview();
-    getTopRatedMoviesPreview();
-    
-}
 
 function minutesToString(minutes) {
     var hour = Math.floor(minutes / 60);
@@ -147,7 +133,7 @@ function createVerticalMovies(movies, container, clean = true) {
         movieImg_date.appendChild(movieImg_dateText);
 
         const detailsScore = document.createElement('span');
-        detailsScore.classList.add('personMovieDetails-score');
+        detailsScore.classList.add('movieDetails-score');
         const average = movie.vote_average;
         const detailsScoreText = document.createTextNode(Number(average.toFixed(2)));
         detailsScore.appendChild(detailsScoreText);
@@ -172,10 +158,10 @@ function createVerticalMovies(movies, container, clean = true) {
         movieContainer.appendChild(movieDetailContainer);
         movieContainer.appendChild(detailsScore);
         movieContainer.appendChild(movieBtn);
-        container.appendChild(movieContainer); 
-
+        container.appendChild(movieContainer);        
     });
-    observer(clean, '.genericPage-movieList .movie-container');
+    
+    observer(clean, '.generic .preview-movieList .movie-container');
 }
 
 function createMovies(movies, container, clean = true) {
@@ -216,7 +202,7 @@ function createMovies(movies, container, clean = true) {
         container.appendChild(movieContainer); 
 
     });
-    observer(clean, '.genericPage-movieList .movie-container');
+    observer(clean, '.genericPreview-movieList .movie-container');
 }
 
 async function getCredits(id) {
@@ -306,6 +292,8 @@ function sortJSON(data, key, orden) {
 async function getPersonFilmography(id) {
     const { data } = await api(`/person/${id}/movie_credits`);
 
+    console.log(data);
+
     let oJSON = sortJSON(data.cast, 'vote_average', 'desc');
 
     createVerticalMovies(data.cast, personMoviesPreviewList);
@@ -328,11 +316,18 @@ async function getPlayingMoviesPreview() {
 
 async function getPlayingMoviesPage() {
         const { data } = await api('/movie/now_playing?page=' + page);
+
+        console.log(data);
         
         const movies = data.results;
         caller = 'playing';
         maxPage = data.total_pages;
-        createMovies(movies, genericMoviesPreviewList, false);
+
+        sectionTitle.innerHTML = '';
+
+        const displayTitleText = document.createTextNode('Cartelera');
+        sectionTitle.appendChild(displayTitleText);
+        createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getPopularMoviesPreview() {
@@ -348,7 +343,12 @@ async function getPopularMoviesPage() {
     const movies = data.results;
     caller = 'popular';
     maxPage = data.total_pages;
-    createMovies(movies, genericMoviesPreviewList, false);
+
+    sectionTitle.innerHTML = '';
+
+    const displayTitleText = document.createTextNode('Populares');
+    sectionTitle.appendChild(displayTitleText);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getTrendingMoviesPreview() {
@@ -364,7 +364,12 @@ async function getTrendingMoviesPage() {
     const movies = data.results;
     caller = 'trending';
     maxPage = data.total_pages;
-    createMovies(movies, genericMoviesPreviewList, false);
+
+    sectionTitle.innerHTML = '';
+
+    const displayTitleText = document.createTextNode('Tendencias');
+    sectionTitle.appendChild(displayTitleText);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getUpcomingMoviesPreview() {
@@ -380,7 +385,12 @@ async function getUpcomingMoviesPage() {
     const movies = data.results;
     caller = 'upcoming';
     maxPage = data.total_pages;
-    createMovies(movies, genericMoviesPreviewList, false);
+
+    sectionTitle.innerHTML = '';
+
+    const displayTitleText = document.createTextNode('Próximas películas');
+    sectionTitle.appendChild(displayTitleText);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getTopRatedMoviesPreview() {
@@ -396,7 +406,12 @@ async function getTopRatedMoviesPage() {
     const movies = data.results;
     caller = 'toprated';
     maxPage = data.total_pages;
-    createMovies(movies, genericMoviesPreviewList, false);
+
+    sectionTitle.innerHTML = '';
+
+    const displayTitleText = document.createTextNode('Mejor valoradas');
+    sectionTitle.appendChild(displayTitleText);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getMovieDetails(id) {
@@ -413,13 +428,13 @@ async function getMovieDetails(id) {
     const detailsScore = document.createElement('span');
     detailsScore.classList.add('movieDetails-score');
     const detailsReleaseDateSpan = document.createElement('span');
-    detailsReleaseDateSpan.classList.add('movieDetails-releaseSpan');
+    detailsReleaseDateSpan.classList.add('movieDetailsRelease');
     const detailsDurationSpan = document.createElement('span');
-    detailsDurationSpan.classList.add('movieDetails-durationSpan');
+    detailsDurationSpan.classList.add('movieDetailsDuration');
     const detailsStatusSpan = document.createElement('span');
-    detailsStatusSpan.classList.add('movieDetails-statusSpan');
+    detailsStatusSpan.classList.add('movieDetailsStatus');
     const detailsSpanDescription = document.createElement('span');
-    detailsSpanDescription.classList.add('movieDetails-descriptionSpan');
+    detailsSpanDescription.classList.add('movieDetailsDescription');
 
     if (data.belongs_to_collection !== null) {
         const detailDescriptionCollection_button = document.createElement('button');
@@ -496,7 +511,7 @@ async function getMoviesBySearchPage(query) {
     caller = 'search';
     queries = query;
     maxPage = data.total_pages;
-    createMovies(movies, genericMoviesPreviewList, false);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getCategorieName(idGenre) {
@@ -521,12 +536,14 @@ async function getCategoriesMoviesPreview(id) {
         },
     });
 
+    console.log(data);
+
     const movies = data.results;
     caller = 'category';
     catId = id;
     maxPage = data.total_pages;
     getCategorieName(id);
-    createMovies(movies, genericMoviesPreviewList, false);
+    createVerticalMovies(movies, genericMoviesPreviewList, false);
 }
 
 async function getCategoriesMenu() {
@@ -556,7 +573,12 @@ function getLikedMoviesPage() {
     const likedMovie = likedMovieList();
     const moviesArray = Object.values(likedMovie);
 
-    createMovies(moviesArray, genericMoviesPreviewList);
+    sectionTitle.innerHTML = '';
+
+    const displayTitleText = document.createTextNode('Favoritas');
+    sectionTitle.appendChild(displayTitleText);
+
+    createVerticalMovies(moviesArray, genericMoviesPreviewList);
 }
 
 async function getPersonDetails(id) {
